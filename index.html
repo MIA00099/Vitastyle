@@ -209,27 +209,21 @@
 
     <!-- Hero body -->
     <div class="flex-grow flex items-center justify-center relative w-full px-4">
-      <!-- Massive bg text -->
-      <div class="absolute inset-0 flex flex-col items-center justify-center z-0 pointer-events-none select-none">
-        <h1 class="hero-title font-display font-black text-[22vw] md:text-[18vw] leading-[0.75] text-vscream/70 text-center tracking-tight flex flex-col animate-float-slow">
-          <span class="animate-spring-1 opacity-0 block">vita</span>
-          <span class="animate-spring-2 opacity-0 block">style</span>
-        </h1>
-      </div>
 
-      <!-- Central product image -->
+      <!-- Central product video -->
       <div class="relative z-10 w-full max-w-[720px] mx-auto mt-[-4%]">
-        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&q=100&w=1200"
-             alt="Featured Armchair"
-             class="w-full h-auto blend-darken contrast-125 hover:scale-[1.03] transition-transform duration-700 animate-spring-2 opacity-0"
-             style="mix-blend-mode:darken">
+        <video autoplay loop muted playsinline
+               class="w-full h-auto rounded-2xl shadow-lg object-cover animate-spring-2 opacity-0"
+               style="mix-blend-mode:darken">
+          <source src="turn_into_live_x_.mp4" type="video/mp4">
+        </video>
       </div>
 
-      <!-- Foreground "furniture" text -->
-      <div class="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none select-none mt-[10%] md:mt-[5%]">
-        <h2 class="font-display font-light text-3xl md:text-5xl text-vscream/90 tracking-[0.18em] ml-[18%] md:ml-[28%] animate-spring-3 opacity-0 uppercase">
-          furniture
-        </h2>
+      <!-- Centered company description -->
+      <div class="absolute bottom-[18%] left-1/2 -translate-x-1/2 z-30 text-center max-w-md px-4">
+        <p class="font-sans text-base md:text-lg text-vsdark/80 leading-relaxed">
+          Vitastyle brings you premium furniture and interior design in Kigali, Gisozi. Order easily via WhatsApp — we deliver to your door.
+        </p>
       </div>
     </div>
 
@@ -239,7 +233,6 @@
         <p class="font-display font-medium text-vsdark text-xl md:text-2xl leading-snug">
           Premium furniture<br>for soft living.
         </p>
-        <p class="text-vsdark/55 font-sans text-sm mt-1">Kigali, Rwanda</p>
       </div>
       <a href="#catalog"
          class="bg-vsdark text-vscream px-8 py-3.5 rounded-full font-sans font-medium hover:bg-vsaccent transition-all hover:scale-105 shadow-xl text-[0.95rem]">
@@ -513,6 +506,7 @@
             <option value="Workspace">Workspace</option>
             <option value="Outdoor">Outdoor</option>
             <option value="Bar & Accents">Bar & Accents</option>
+            <option value="Video">Video</option>
           </select>
         </div>
 
@@ -687,26 +681,72 @@ create policy "Auth write"
   // ─── DEMO DATA ───────────────────────────────────────────────────────────
   function loadDemoCatalog() {
     const demo = [
-      { id:'d1', name:'Cloud Modular Sofa',    material:'Linen Fabric',        category:'Living Room',     image_url:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d2', name:'Bouclé Armchair',        material:'Textured Wool',       category:'Living Room',     image_url:'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d3', name:'Marble Coffee Table',    material:'Solid Carrara',       category:'Living Room',     image_url:'https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d4', name:'Dusk Sectional',         material:'Performance Velvet',  category:'Living Room',     image_url:'https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d5', name:'Upholstered King Bed',   material:'Soft Linen',          category:'Bedroom',         image_url:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d6', name:'Walnut Nightstand',      material:'Solid Wood',          category:'Bedroom',         image_url:'https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d7', name:'6-Drawer Dresser',       material:'Brass Hardware',      category:'Bedroom',         image_url:'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d8', name:'Custom Wardrobe',        material:'Bespoke Fitting',     category:'Bedroom',         image_url:'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d9', name:'Round Dining Table',     material:'Solid Oak',           category:'Dining',          image_url:'https://images.unsplash.com/photo-1604578762246-41134e37f9cc?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d10', name:'Sculpted Dining Chair', material:'Set of 2',            category:'Dining',          image_url:'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d11', name:'Fluted Sideboard',      material:'Ash Wood',            category:'Dining',          image_url:'https://images.unsplash.com/photo-1581428982868-e410dd047a90?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d12', name:'Freestanding Island',   material:'Marble Top',          category:'Kitchen & Pantry',image_url:'https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d13', name:'Counter Stools',        material:'Woven Rattan',        category:'Kitchen & Pantry',image_url:'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d14', name:'Executive Desk',        material:'Solid Walnut',        category:'Workspace',       image_url:'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d15', name:'Ergonomic Task Chair',  material:'Breathable Mesh',     category:'Workspace',       image_url:'https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d16', name:'Teak Lounge Set',       material:'Weather-resistant',   category:'Outdoor',         image_url:'https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d17', name:'Poolside Lounger',      material:'Adjustable Recline',  category:'Outdoor',         image_url:'https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d18', name:'Home Bar Unit',         material:'Illuminated Display', category:'Bar & Accents',   image_url:'https://images.unsplash.com/photo-1574087541285-b1a995ce5e6f?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d19', name:'Brass Bar Cart',        material:'Mirrored Shelves',    category:'Bar & Accents',   image_url:'https://images.unsplash.com/photo-1596205562858-a895b3400b95?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
-      { id:'d20', name:'Oversized Mirror',      material:'Brass Frame',         category:'Bar & Accents',   image_url:'https://images.unsplash.com/photo-1618220179428-22790b46a0eb?auto=format&fit=crop&q=100&w=800', whatsapp_msg:'', featured:false },
+      { id:'d1', name:'Marble TV Wall Unit', material:'Marble & Wood', category:'Living Room', image_url:'Image/IMG-20260612-WA0048.jpg', whatsapp_msg:'', featured:false },
+      { id:'d2', name:'Wooden TV Entertainment Center', material:'Solid Wood', category:'Living Room', image_url:'Image/IMG-20260612-WA0050.jpg', whatsapp_msg:'', featured:false },
+      { id:'d3', name:'Modern TV Wall Unit', material:'Wood Panel', category:'Living Room', image_url:'Image/IMG-20260612-WA0051.jpg', whatsapp_msg:'', featured:false },
+      { id:'d4', name:'TV Stand with Zigzag Shelf', material:'Wood & White', category:'Living Room', image_url:'Image/IMG-20260612-WA0052.jpg', whatsapp_msg:'', featured:false },
+      { id:'d5', name:'Low Profile TV Stand', material:'Wood & White', category:'Living Room', image_url:'Image/IMG-20260612-WA0053.jpg', whatsapp_msg:'', featured:false },
+      { id:'d6', name:'TV Wall Panel with Floating Console', material:'Wood & White', category:'Living Room', image_url:'Image/IMG-20260612-WA0054.jpg', whatsapp_msg:'', featured:false },
+      { id:'d7', name:'TV Wall Unit with Glass Shelves', material:'Wood & Glass', category:'Living Room', image_url:'Image/IMG-20260612-WA0055.jpg', whatsapp_msg:'', featured:false },
+      { id:'d8', name:'Floating Console with Wood Slats', material:'Wood Panel', category:'Living Room', image_url:'Image/IMG-20260612-WA0056.jpg', whatsapp_msg:'', featured:false },
+      { id:'d9', name:'White Minimalist TV Console', material:'Glossy White', category:'Living Room', image_url:'Image/IMG-20260612-WA0057.jpg', whatsapp_msg:'', featured:false },
+      { id:'d10', name:'TV Wall Panel with LED Backlight', material:'Wood Slats & LED', category:'Living Room', image_url:'Image/IMG-20260612-WA0058.jpg', whatsapp_msg:'', featured:false },
+      { id:'d11', name:'TV Wall with Wood Slats', material:'Wood Panel', category:'Living Room', image_url:'Image/IMG-20260612-WA0059.jpg', whatsapp_msg:'', featured:false },
+      { id:'d12', name:'Luxury TV Wall with Illuminated Display', material:'Marble & Wood', category:'Living Room', image_url:'Image/IMG-20260612-WA0060.jpg', whatsapp_msg:'', featured:false },
+      { id:'d13', name:'Black and White TV Wall Unit', material:'MDF & Wood', category:'Living Room', image_url:'Image/IMG-20260612-WA0061.jpg', whatsapp_msg:'', featured:false },
+      { id:'d14', name:'Marble Panel TV Wall with LED Strip', material:'Marble & LED', category:'Living Room', image_url:'Image/IMG-20260612-WA0062.jpg', whatsapp_msg:'', featured:false },
+      { id:'d15', name:'Marble TV Wall with Floating Console', material:'Marble & Wood', category:'Living Room', image_url:'Image/IMG-20260612-WA0063.jpg', whatsapp_msg:'', featured:false },
+      { id:'d16', name:'Complete Marble TV Wall Unit', material:'Marble & LED', category:'Living Room', image_url:'Image/IMG-20260612-WA0064.jpg', whatsapp_msg:'', featured:false },
+      { id:'d17', name:'Finished Marble TV Wall Unit', material:'Marble & Wood', category:'Living Room', image_url:'Image/IMG-20260612-WA0065.jpg', whatsapp_msg:'', featured:false },
+      { id:'d18', name:'Marble TV Wall with Wood Accents', material:'Marble & Wood', category:'Living Room', image_url:'Image/IMG-20260612-WA0066.jpg', whatsapp_msg:'', featured:false },
+      { id:'d19', name:'Marble TV Wall Final Installation', material:'Marble & LED', category:'Living Room', image_url:'Image/IMG-20260612-WA0067.jpg', whatsapp_msg:'', featured:false },
+      { id:'d20', name:'Flip-Top Shoe Cabinet', material:'Wood & White', category:'Living Room', image_url:'Image/IMG-20260612-WA0068.jpg', whatsapp_msg:'', featured:false },
+      { id:'d21', name:'Shoe Storage Bench with Cushion', material:'Wood & Leather', category:'Living Room', image_url:'Image/IMG-20260612-WA0069.jpg', whatsapp_msg:'', featured:false },
+      { id:'d22', name:'Sculptural Wood Mirror Frame', material:'Natural Wood', category:'Bar & Accents', image_url:'Image/IMG-20260612-WA0070.jpg', whatsapp_msg:'', featured:false },
+      { id:'d23', name:'Louvered Door Shoe Cabinet', material:'Solid Wood', category:'Living Room', image_url:'Image/IMG-20260612-WA0071.jpg', whatsapp_msg:'', featured:false },
+      { id:'d24', name:'Shoe Rack with Mirror', material:'Wood', category:'Living Room', image_url:'Image/IMG-20260612-WA0072.jpg', whatsapp_msg:'', featured:false },
+      { id:'d25', name:'Wooden Shoe Rack with Drawer', material:'Solid Wood', category:'Living Room', image_url:'Image/IMG-20260612-WA0073.jpg', whatsapp_msg:'', featured:false },
+      { id:'d26', name:'Rotating Shoe Rack Tower', material:'Wood & White', category:'Living Room', image_url:'Image/IMG-20260612-WA0074.jpg', whatsapp_msg:'', featured:false },
+      { id:'d27', name:'Curved Shelf Shoe Rack', material:'Bamboo Wood', category:'Living Room', image_url:'Image/IMG-20260612-WA0075.jpg', whatsapp_msg:'', featured:false },
+      { id:'d28', name:'Wooden Shoe Rack Multi-Shelf', material:'Solid Wood', category:'Living Room', image_url:'Image/IMG-20260612-WA0076.jpg', whatsapp_msg:'', featured:false },
+      { id:'d29', name:'Glass Door Display Cabinet', material:'Wood & Glass', category:'Workspace', image_url:'Image/IMG-20260612-WA0077.jpg', whatsapp_msg:'', featured:false },
+      { id:'d30', name:'Black Metal Bookcase', material:'Metal & Glass', category:'Workspace', image_url:'Image/IMG-20260612-WA0078.jpg', whatsapp_msg:'', featured:false },
+      { id:'d31', name:'Executive Office Desk Set', material:'Wood & Leather', category:'Workspace', image_url:'Image/IMG-20260612-WA0079.jpg', whatsapp_msg:'', featured:false },
+      { id:'d32', name:'LED Reception Desk', material:'White MDF & LED', category:'Workspace', image_url:'Image/IMG-20260612-WA0080.jpg', whatsapp_msg:'', featured:false },
+      { id:'d33', name:'Wood Slatted Bar Counter', material:'Wood & Quartz', category:'Bar & Accents', image_url:'Image/IMG-20260612-WA0081.jpg', whatsapp_msg:'', featured:false },
+      { id:'d34', name:'Modern L-Shaped Office Desk', material:'Wood & White', category:'Workspace', image_url:'Image/IMG-20260612-WA0082.jpg', whatsapp_msg:'', featured:false },
+      { id:'d35', name:'Executive L-Shaped Desk', material:'Wood & Black', category:'Workspace', image_url:'Image/IMG-20260612-WA0083.jpg', whatsapp_msg:'', featured:false },
+      { id:'d36', name:'Modern Office Desk with Cabinet', material:'Wood & Metal', category:'Workspace', image_url:'Image/IMG-20260612-WA0084.jpg', whatsapp_msg:'', featured:false },
+      { id:'d37', name:'Sculptural Floor Mirror', material:'Resin & Glass', category:'Bar & Accents', image_url:'Image/IMG-20260612-WA0085.jpg', whatsapp_msg:'', featured:false },
+      { id:'d38', name:'Organic Wood Floor Mirror', material:'Natural Wood', category:'Bar & Accents', image_url:'Image/IMG-20260612-WA0086.jpg', whatsapp_msg:'', featured:false },
+      { id:'d39', name:'White Vanity Table with Stool', material:'MDF & Mirror', category:'Bedroom', image_url:'Image/IMG-20260612-WA0087.jpg', whatsapp_msg:'', featured:false },
+      { id:'d40', name:'Oval Wood Dowel Mirror', material:'Wood & Glass', category:'Bar & Accents', image_url:'Image/IMG-20260612-WA0088.jpg', whatsapp_msg:'', featured:false },
+      { id:'d41', name:'LED Hollywood Vanity Table', material:'MDF & LED', category:'Bedroom', image_url:'Image/IMG-20260612-WA0089.jpg', whatsapp_msg:'', featured:false },
+      { id:'d42', name:'Ocean Wave Epoxy Dining Table', material:'Wood & Epoxy Resin', category:'Dining', image_url:'Image/IMG-20260612-WA0090.jpg', whatsapp_msg:'', featured:false },
+      { id:'d43', name:'Round Epoxy Resin Side Table', material:'Wood & Epoxy Resin', category:'Bar & Accents', image_url:'Image/IMG-20260612-WA0091.jpg', whatsapp_msg:'', featured:false },
+      { id:'d44', name:'Kitchen Cabinet with Stovetop', material:'MDF & Countertop', category:'Kitchen & Pantry', image_url:'Image/IMG-20260612-WA0092.jpg', whatsapp_msg:'', featured:false },
+      { id:'d45', name:'Luxury TV Wall with Marble Panel', material:'Marble & LED', category:'Living Room', image_url:'Image/IMG-20260612-WA0093.jpg', whatsapp_msg:'', featured:false },
+      { id:'d46', name:'Custom Office Desks Batch', material:'MDF & Laminate', category:'Workspace', image_url:'Image/IMG-20260612-WA0094.jpg', whatsapp_msg:'', featured:false },
+      { id:'d47', name:'White Vanity Dressing Table', material:'MDF & Mirror', category:'Bedroom', image_url:'Image/IMG-20260612-WA0095.jpg', whatsapp_msg:'', featured:false },
+      { id:'d48', name:'Black Bar Counter', material:'MDF & Wood', category:'Bar & Accents', image_url:'Image/IMG-20260612-WA0096.jpg', whatsapp_msg:'', featured:false },
+      { id:'d49', name:'Yellow Velvet Chaise Lounge', material:'Velvet & Gold Metal', category:'Living Room', image_url:'Image/IMG-20260612-WA0097.jpg', whatsapp_msg:'', featured:false },
+      { id:'d50', name:'Blue Epoxy Resin Round Table', material:'Wood & Epoxy Resin', category:'Bar & Accents', image_url:'Image/IMG-20260612-WA0098.jpg', whatsapp_msg:'', featured:false },
+      { id:'d51', name:'Floral Epoxy Dining Table', material:'Wood & Epoxy Resin', category:'Dining', image_url:'Image/IMG-20260612-WA0099.jpg', whatsapp_msg:'', featured:false },
+      { id:'d52', name:'Marble Oval Dining Set', material:'Marble & Velvet', category:'Dining', image_url:'Image/IMG-20260612-WA0100.jpg', whatsapp_msg:'', featured:false },
+      { id:'d53', name:'Kitchen Stovetop Cabinet', material:'MDF & Gold Handles', category:'Kitchen & Pantry', image_url:'Image/IMG-20260612-WA0101.jpg', whatsapp_msg:'', featured:false },
+      { id:'d54', name:'Green Velvet Chesterfield Sofa', material:'Velvet & Gold Metal', category:'Living Room', image_url:'Image/IMG-20260612-WA0102.jpg', whatsapp_msg:'', featured:false },
+      { id:'d55', name:'Gray Wood TV Console', material:'Wood Laminate', category:'Living Room', image_url:'Image/IMG-20260612-WA0103.jpg', whatsapp_msg:'', featured:false },
+      { id:'d56', name:'Marble Dining Table with Gold Legs', material:'Marble & Gold Metal', category:'Dining', image_url:'Image/IMG-20260612-WA0104.jpg', whatsapp_msg:'', featured:false },
+      { id:'d57', name:'Kitchen Dining Set', material:'Marble & Metal', category:'Dining', image_url:'Image/IMG-20260612-WA0105.jpg', whatsapp_msg:'', featured:false },
+      { id:'d58', name:'Wooden Dining Table with Navy Chairs', material:'Solid Wood & Velvet', category:'Dining', image_url:'Image/IMG-20260612-WA0106.jpg', whatsapp_msg:'', featured:false },
+      { id:'d59', name:'Tufted Velvet L-Shape Sectional', material:'Velvet & Gold Metal', category:'Living Room', image_url:'Image/IMG-20260612-WA0107.jpg', whatsapp_msg:'', featured:false },
+      { id:'d60', name:'Marble Dining Table with Black Chairs', material:'Marble & Gold Metal', category:'Dining', image_url:'Image/IMG-20260612-WA0108.jpg', whatsapp_msg:'', featured:false },
+      { id:'d61', name:'Tufted Nailhead Dining Chairs', material:'Velvet & Nailhead', category:'Dining', image_url:'Image/IMG-20260612-WA0109.jpg', whatsapp_msg:'', featured:false },
+      { id:'d62', name:'Executive Office Desk', material:'Wood Laminate', category:'Workspace', image_url:'Image/IMG-20260612-WA0110.jpg', whatsapp_msg:'', featured:false },
+      { id:'d63', name:'Wood Dining Table with Tufted Chairs', material:'Solid Wood & Velvet', category:'Dining', image_url:'Image/IMG-20260612-WA0111.jpg', whatsapp_msg:'', featured:false },
+      { id:'d64', name:'Marble Dining Table with Bench', material:'Marble & Gold Metal', category:'Dining', image_url:'Image/IMG-20260612-WA0112.jpg', whatsapp_msg:'', featured:false },
+      { id:'d65', name:'Furniture Showcase Video', material:'', category:'Video', image_url:'Image/VID-20260612-WA0014.mp4', whatsapp_msg:'', featured:false },
+      { id:'d66', name:'Interior Design Walkthrough', material:'', category:'Video', image_url:'Image/VID-20260612-WA0034.mp4', whatsapp_msg:'', featured:false },
     ];
     allProducts = demo;
     renderCatalog(demo);
@@ -756,7 +796,7 @@ create policy "Auth write"
       groups[p.category].push(p);
     });
 
-    const catOrder = ['Living Room','Bedroom','Dining','Kitchen & Pantry','Workspace','Outdoor','Bar & Accents'];
+    const catOrder = ['Living Room','Bedroom','Dining','Kitchen & Pantry','Workspace','Outdoor','Bar & Accents','Video'];
     const sortedCats = catOrder.filter(c => groups[c]);
 
     container.innerHTML = sortedCats.map(cat => `
@@ -781,15 +821,21 @@ create policy "Auth write"
       ? encodeURIComponent(p.whatsapp_msg)
       : encodeURIComponent(`Hello Vitastyle, I'm interested in the ${p.name}.`);
     const waLink = `https://wa.me/250788421306?text=${msg}`;
+    const isVideo = p.image_url && p.image_url.toLowerCase().endsWith('.mp4');
 
     return `
       <div class="product-card group flex flex-col">
         <div class="img-frame w-full mb-4 overflow-hidden rounded-3xl bg-vslight relative">
+          ${isVideo ? `
+          <video autoplay loop muted playsinline
+                 class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+            <source src="${p.image_url}" type="video/mp4">
+          </video>` : `
           <img src="${p.image_url || 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800'}"
                alt="${p.name}"
                loading="lazy"
                class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
-               onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800'">
+               onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800'">`}
           ${adminUnlocked ? `
           <div class="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
             <button onclick="editProduct('${p.id}')"
@@ -824,7 +870,7 @@ create policy "Auth write"
   // ─── CATEGORY NAV ────────────────────────────────────────────────────────
   function buildCategoryNav(products) {
     const cats = [...new Set(products.map(p => p.category).filter(Boolean))];
-    const catOrder = ['Living Room','Bedroom','Dining','Kitchen & Pantry','Workspace','Outdoor','Bar & Accents'];
+    const catOrder = ['Living Room','Bedroom','Dining','Kitchen & Pantry','Workspace','Outdoor','Bar & Accents','Video'];
     const sorted = catOrder.filter(c => cats.includes(c));
 
     const nav = document.getElementById('cat-nav');
