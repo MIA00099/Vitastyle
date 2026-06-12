@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitastyle Company | Premium Furniture & Interior Design</title>
+    
+    <!-- Google Fonts: Playfair for luxury headings, Inter for crisp body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Integration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        vsblue: '#111827', /* Deepened for a more premium dark mode feel */
+                        vsred: '#c1121f',  /* Signature Red */
+                        vslight: '#fafafa', /* Softer off-white */
+                        vsgold: '#D4AF37', /* Luxury Gold Accent */
+                        whatsapp: '#25D366'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'slow-zoom': 'zoom 20s ease-in-out infinite alternate',
+                        'fade-in-up': 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        zoom: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.1)' }
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Premium Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #fafafa; }
+        ::-webkit-scrollbar-thumb { background: #111827; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c1121f; }
+
+        /* Image Hover Mechanics */
+        .img-zoom-container { overflow: hidden; }
+        .img-zoom-container img { transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .group:hover .img-zoom-container img { transform: scale(1.05); }
+
+        /* Smooth reveal utility */
+        .reveal-delay-1 { animation-delay: 0.2s; }
+        .reveal-delay-2 { animation-delay: 0.4s; }
+        .reveal-delay-3 { animation-delay: 0.6s; }
+
+        /* Glassmorphism for sticky nav */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Hide scrollbar for category nav but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-vslight antialiased selection:bg-vsblue selection:text-white relative">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-vsblue text-white text-[10px] md:text-xs text-center py-2.5 tracking-[0.2em] uppercase font-medium">
+        Work with us and save your money | Kigali, Gisozi
+    </div>
+
+    <!-- Header / Nav -->
+    <header class="bg-white sticky top-0 z-50 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.03)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 transform transition hover:scale-105 duration-300">
+                <img src="download.png" alt="Vitastyle Company Logo" class="h-14 md:h-16 w-auto object-contain">
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-10">
+                <a href="#home" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-vsred transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1px] hover:after:w-full after:bg-vsred after:transition-all after:duration-300">Home</a>
+                <a href="#catalog" class="text-xs font-bold uppercase tracking-widest text-gray-900 hover:text-vsred transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1px] hover:after:w-full after:bg-vsred after:transition-all after:duration-300">Master Collection</a>
+                <a href="#portfolio" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-vsred transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1px] hover:after:w-full after:bg-vsred after:transition-all after:duration-300">Portfolio</a>
+                <a href="#contact" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-vsred transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1px] hover:after:w-full after:bg-vsred after:transition-all after:duration-300">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-900 focus:outline-none p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Cinematic Hero Section -->
+    <section id="home" class="relative h-[85vh] md:h-[90vh] flex items-center justify-center overflow-hidden bg-vsblue">
+        <!-- Animated Background Image -->
+        <div class="absolute inset-0 w-full h-full">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=100&w=2500" alt="Luxury Interior" class="w-full h-full object-cover animate-slow-zoom opacity-90" />
+            <!-- Luxury Gradient Overlay (Darker for text contrast) -->
+            <div class="absolute inset-0 bg-gradient-to-r from-vsblue/95 via-vsblue/70 to-transparent"></div>
+            <!-- Secondary subtle gradient for mobile readability -->
+            <div class="absolute inset-0 bg-gradient-to-t from-vsblue/80 via-transparent to-transparent md:hidden"></div>
+        </div>
+
+        <!-- Hook Content -->
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+            <div class="max-w-3xl">
+                <!-- Eyebrow text -->
+                <p class="text-vsgold uppercase tracking-[0.3em] font-semibold text-xs md:text-sm mb-4 animate-fade-in-up opacity-0">
+                    Welcome to Vitastyle
+                </p>
+                
+                <!-- Main Headline -->
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-6 leading-[1.1] animate-fade-in-up opacity-0 reveal-delay-1">
+                    Curated Luxury.<br>
+                    <span class="text-white/70 italic font-light">Crafted for You.</span>
+                </h1>
+                
+                <!-- Subheadline -->
+                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-xl font-light leading-relaxed animate-fade-in-up opacity-0 reveal-delay-2">
+                    Discover uncompromising quality and bespoke interior design. We bring Kigali's most refined furniture collection directly to your space, combining premium aesthetics with smart savings.
+                </p>
+                
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row gap-5 animate-fade-in-up opacity-0 reveal-delay-3">
+                    <a href="#catalog" class="group relative px-8 py-4 bg-white text-vsblue overflow-hidden rounded-none text-center font-bold tracking-widest uppercase text-xs transition-all hover:bg-gray-100">
+                        <span class="relative z-10">Explore Collection</span>
+                    </a>
+                    <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20would%20like%20to%20get%20a%20free%20quote%20for%20interior%20design." target="_blank" class="group px-8 py-4 bg-transparent border border-white/30 text-white rounded-none text-center font-bold tracking-widest uppercase text-xs hover:border-whatsapp hover:bg-whatsapp transition-all duration-300 flex items-center justify-center gap-3 backdrop-blur-sm">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 1.84 6.366L0 24l5.82-1.785A12 12 0 1 0 11.944 0zM18.5 16.5c-.2.6-.9 1.1-1.6 1.3-.6.1-1.3.2-3.8-1-2.9-1.3-4.8-4.4-4.9-4.5-.1-.2-1.2-1.6-1.2-3.1s.8-2.2 1.1-2.5c.3-.3.6-.4.9-.4h.3c.3 0 .5.1.7.6.2.6.8 1.9.9 2 .1.2.1.4 0 .6-.1.2-.2.3-.4.5l-.4.5c-.2.2-.4.4-.1.8.3.5.7 1.1 1.2 1.5.6.5 1.1.8 1.6 1 .4.2.7.1.9-.1.2-.2.4-.6.6-.8.2-.2.4-.2.7-.1.3.1 1.8.8 1.9.9.1.1.2.2.3.4.1.2.1.8-.1 1.4z"/></svg>
+                        Design Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sub-Navigation for Categories -->
+    <div class="sticky top-[72px] md:top-[88px] z-40 glass-nav shadow-sm hidden md:block">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex overflow-x-auto py-4 no-scrollbar justify-center">
+                <ul class="flex space-x-2 md:space-x-8 text-[11px] font-bold uppercase tracking-widest text-gray-500 whitespace-nowrap px-4">
+                    <li><a href="#cat-living" class="hover:text-vsblue px-2 py-1 rounded-full hover:bg-gray-100 transition-all">Living Room</a></li>
+                    <li><a href="#cat-bedroom" class="hover:text-vsblue px-2 py-1 rounded-full hover:bg-gray-100 transition-all">Bedroom</a></li>
+                    <li><a href="#cat-dining" class="hover:text-vsblue px-2 py-1 rounded-full hover:bg-gray-100 transition-all">Dining Room</a></li>
+                    <li><a href="#cat-office" class="hover:text-vsblue px-2 py-1 rounded-full hover:bg-gray-100 transition-all">Home Office</a></li>
+                    <li><a href="#cat-outdoor" class="hover:text-vsblue px-2 py-1 rounded-full hover:bg-gray-100 transition-all">Outdoor & Patio</a></li>
+                    <li><a href="#cat-accent" class="hover:text-vsblue px-2 py-1 rounded-full hover:bg-gray-100 transition-all">Accent</a></li>
+                    <li><a href="#cat-bar" class="hover:text-vsblue px-2 py-1 rounded-full hover:bg-gray-100 transition-all">Bar & Game</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Massive Catalog Section -->
+    <section id="catalog" class="pt-24 pb-32 bg-vslight">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Editorial Catalog Header -->
+            <div class="text-center mb-24">
+                <p class="text-vsred uppercase tracking-[0.2em] font-semibold text-xs mb-3">The 2026 Lookbook</p>
+                <h2 class="font-serif text-4xl md:text-6xl font-medium text-vsblue mb-6">Master Collection</h2>
+                <div class="w-16 h-[2px] bg-gray-300 mx-auto mb-8"></div>
+                <p class="text-gray-500 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+                    A curated selection of our finest pieces. Find your inspiration, and tap 'Inquire' to discuss custom dimensions, luxury fabrics, and dedicated delivery in Kigali.
+                </p>
+            </div>
+
+            <!-- 1. LIVING ROOM FURNITURE -->
+            <div id="cat-living" class="mb-32 scroll-mt-32">
+                <div class="flex items-center gap-6 mb-12">
+                    <h3 class="font-serif text-3xl md:text-4xl font-medium text-vsblue">Living Room</h3>
+                    <div class="flex-grow h-[1px] bg-gray-200"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8">
+                    <!-- Item 1 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=100&w=1600" alt="Emerald Velvet Sofa" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Emerald Velvet Sofa</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Plush, deep-seated luxury velvet with brushed gold legs.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Emerald%20Velvet%20Sofa." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?auto=format&fit=crop&q=100&w=1600" alt="Linen Sectional" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Linen Sectional</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Spacious modular seating featuring stain-resistant performance fabric.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Linen%20Sectional." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&q=100&w=1600" alt="Marble Coffee Table" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Carrara Table</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Solid marble top resting on a minimalist geometric metal base.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Carrara%20Table." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=100&w=1600" alt="Lounge Chair" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Cognac Lounge</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Genuine leather accent chair with ergonomic mid-century design.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Cognac%20Lounge." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1601392740426-907c7b028119?auto=format&fit=crop&q=100&w=1600" alt="TV Console" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Walnut Console</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Sleek low-profile entertainment unit with soft-close cabinetry.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Walnut%20Console." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. BEDROOM FURNITURE -->
+            <div id="cat-bedroom" class="mb-32 scroll-mt-32">
+                <div class="flex items-center gap-6 mb-12">
+                    <h3 class="font-serif text-3xl md:text-4xl font-medium text-vsblue">Bedroom</h3>
+                    <div class="flex-grow h-[1px] bg-gray-200"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8">
+                    <!-- Item 6 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=100&w=1600" alt="Platform Bed" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Tufted King Bed</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Upholstered headboard with a solid wood sturdy platform base.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Tufted%20King%20Bed." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 7 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?auto=format&fit=crop&q=100&w=1600" alt="Nightstand" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Mahogany Nightstand</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Two-drawer bedside table constructed from rich solid mahogany.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Mahogany%20Nightstand." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 8 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=100&w=1600" alt="Dresser" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">6-Drawer Dresser</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Spacious clothing storage featuring dovetail joinery and brass knobs.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Dresser." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 9 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&q=100&w=1600" alt="Wardrobe" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Bespoke Wardrobe</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Floor-to-ceiling storage solutions fitted perfectly to your room.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Bespoke%20Wardrobe." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 10 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=100&w=1600" alt="Vanity" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Makeup Vanity</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Elegant station with matching stool and designated cosmetic storage.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Makeup%20Vanity." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. DINING ROOM FURNITURE -->
+            <div id="cat-dining" class="mb-32 scroll-mt-32">
+                <div class="flex items-center gap-6 mb-12">
+                    <h3 class="font-serif text-3xl md:text-4xl font-medium text-vsblue">Dining Room</h3>
+                    <div class="flex-grow h-[1px] bg-gray-200"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8">
+                    <!-- Item 11 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1604578762246-41134e37f9cc?auto=format&fit=crop&q=100&w=1600" alt="Dining Table" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Solid Oak Table</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Seats up to 8. Sustainably sourced solid oak with a smooth matte finish.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Oak%20Dining%20Table." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 12 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&q=100&w=1600" alt="Dining Chairs" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Linen Dining Chairs</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Set of 2. Stain-resistant fabric with gracefully tapered dark wood legs.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Linen%20Dining%20Chairs." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 13 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1581428982868-e410dd047a90?auto=format&fit=crop&q=100&w=1600" alt="Sideboard" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Fluted Sideboard</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Elegant dining storage for dishes, featuring brass handle accents.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Fluted%20Sideboard." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 14 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1544457070-4cd773b4d71e?auto=format&fit=crop&q=100&w=1600" alt="Chandelier" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Starburst Chandelier</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">A stunning focal point for any dining room, available in gold or matte black.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Starburst%20Chandelier." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 15 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1596205562858-a895b3400b95?auto=format&fit=crop&q=100&w=1600" alt="Bar Cart" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Brass Bar Cart</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Chic, mobile station for entertaining, layered with mirrored glass shelves.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Brass%20Bar%20Cart." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. HOME OFFICE FURNITURE -->
+            <div id="cat-office" class="mb-32 scroll-mt-32">
+                <div class="flex items-center gap-6 mb-12">
+                    <h3 class="font-serif text-3xl md:text-4xl font-medium text-vsblue">Home Office</h3>
+                    <div class="flex-grow h-[1px] bg-gray-200"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8">
+                    <!-- Item 16 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&q=100&w=1600" alt="Executive Desk" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Executive Desk</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Spacious surface with built-in cable management and hidden drawers.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Executive%20Desk." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 17 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?auto=format&fit=crop&q=100&w=1600" alt="Office Chair" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Ergo Mesh Chair</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Fully adjustable lumbar support designed for 8-hour executive workdays.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Ergo%20Mesh%20Chair." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 18 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=100&w=1600" alt="Bookshelf" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Walnut Bookshelf</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Open-concept shelving perfect for showcasing home libraries or decor.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Walnut%20Bookshelf." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 19 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=100&w=1600" alt="File Cabinet" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Modern Cabinet</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Discreet, lockable document storage that seamlessly matches our desks.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Modern%20Cabinet." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 20 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=100&w=1600" alt="Task Lamp" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Architect Task Lamp</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Adjustable LED desk lighting designed specifically to reduce eye strain.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Architect%20Task%20Lamp." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. OUTDOOR & PATIO FURNITURE -->
+            <div id="cat-outdoor" class="mb-32 scroll-mt-32">
+                <div class="flex items-center gap-6 mb-12">
+                    <h3 class="font-serif text-3xl md:text-4xl font-medium text-vsblue">Outdoor & Patio</h3>
+                    <div class="flex-grow h-[1px] bg-gray-200"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8">
+                    <!-- Item 21 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=100&w=1600" alt="Patio Lounge" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Wicker Lounge Set</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Weather-resistant premium rattan sofa with UV-protected cushions.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Wicker%20Lounge%20Set." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 22 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=100&w=1600" alt="Outdoor Dining" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Teak Outdoor Dining</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Naturally durable teak wood table seating 6 comfortably outdoors.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Teak%20Outdoor%20Dining." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 23 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&q=100&w=1600" alt="Sun Lounger" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Poolside Lounger</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Adjustable reclining chairs crafted with quick-dry resilient mesh fabric.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Poolside%20Lounger." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 24 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=100&w=1600" alt="Hammock" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Woven Hammock</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Luxury macrame styling, perfect for unwinding in your garden oasis.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Woven%20Hammock." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 25 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=100&w=1600" alt="Fire Pit" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Stone Fire Pit</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">A sophisticated centerpiece for evening gatherings with a sleek surround.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Stone%20Fire%20Pit." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. ACCENT & OCCASIONAL FURNITURE -->
+            <div id="cat-accent" class="mb-32 scroll-mt-32">
+                <div class="flex items-center gap-6 mb-12">
+                    <h3 class="font-serif text-3xl md:text-4xl font-medium text-vsblue">Accent & Occasional</h3>
+                    <div class="flex-grow h-[1px] bg-gray-200"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8">
+                    <!-- Item 26 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?auto=format&fit=crop&q=100&w=1600" alt="Console Table" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Glass Console</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">A sleek, architectural first impression for your hallway or entrance.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Glass%20Console." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 27 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1618220179428-22790b46a0eb?auto=format&fit=crop&q=100&w=1600" alt="Decorative Mirror" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Oversized Brass Mirror</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Expand your space visually with this statement floor-to-ceiling mirror.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Brass%20Mirror." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 28 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=100&w=1600" alt="Pouf Ottoman" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Bouclé Ottoman</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Versatile extra seating or a textured, soft footrest for the lounge.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Boucle%20Ottoman." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 29 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1532372576444-dda954194ad0?auto=format&fit=crop&q=100&w=1600" alt="End Table" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Geometric End Table</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">A modern side table featuring a distinct black matte powder-coated finish.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Geometric%20End%20Table." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 30 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?auto=format&fit=crop&q=100&w=1600" alt="Room Divider" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Bamboo Divider</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Elegantly partition open-concept spaces with warm, natural materials.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Bamboo%20Divider." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. BAR & GAME ROOM FURNITURE -->
+            <div id="cat-bar" class="mb-10 scroll-mt-32">
+                <div class="flex items-center gap-6 mb-12">
+                    <h3 class="font-serif text-3xl md:text-4xl font-medium text-vsblue">Bar & Game Room</h3>
+                    <div class="flex-grow h-[1px] bg-gray-200"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8">
+                    <!-- Item 31 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=100&w=1600" alt="Bar Stools" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Rattan Bar Stools</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Perfect for kitchen islands. Handwoven natural rattan with an iron frame.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Rattan%20Bar%20Stools." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 32 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1574087541285-b1a995ce5e6f?auto=format&fit=crop&q=100&w=1600" alt="Home Bar" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Custom Home Bar</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">A freestanding luxury bar unit with illuminated glass display doors.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Custom%20Home%20Bar." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 33 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1541123437800-1bb1317bc920?auto=format&fit=crop&q=100&w=1600" alt="Wine Rack" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Wall Wine Rack</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Industrial metal and solid wood floating rack holding up to 24 bottles.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Wall%20Wine%20Rack." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 34 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1601628828688-632f38a5a7d0?auto=format&fit=crop&q=100&w=1600" alt="Game Table" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">Convertible Table</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">A dining table that seamlessly converts into a poker or card game surface.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Convertible%20Table." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                    <!-- Item 35 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 group flex flex-col">
+                        <div class="relative h-72 md:h-80 rounded-xl img-zoom-container mb-5 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1582283526685-6ffdbd5bc407?auto=format&fit=crop&q=100&w=1600" alt="Pub Table" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-medium text-xl text-vsblue mb-2">High-Top Pub Table</h4>
+                        <p class="text-sm text-gray-500 mb-6 font-light leading-relaxed flex-grow">Compact high table ideal for entertaining in luxury apartments or small spaces.</p>
+                        <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20am%20interested%20in%20the%20Pub%20Table." target="_blank" class="w-full bg-gray-50 text-vsblue border border-gray-200 flex items-center justify-center py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-300 gap-2">
+                            <span>Inquire via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Interior Design Portfolio -->
+    <section id="portfolio" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="text-vsred uppercase tracking-[0.2em] font-semibold text-xs mb-3">Our Work</p>
+                <h2 class="font-serif text-4xl md:text-5xl font-medium text-vsblue mb-6">Design Portfolio</h2>
+                <div class="w-16 h-[2px] bg-gray-300 mx-auto"></div>
+            </div>
+
+            <!-- Asymmetrical Grid for High-End Editorial Look -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="h-80 md:h-96 rounded-2xl overflow-hidden relative group md:col-span-2 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=100&w=1600" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-vsblue/70 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col items-center justify-center text-white">
+                        <span class="font-serif text-3xl mb-2">Modern Villa Project</span>
+                        <span class="text-sm font-light tracking-widest uppercase">Kigali</span>
+                    </div>
+                </div>
+                <div class="h-80 md:h-96 rounded-2xl overflow-hidden relative group shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1600566753086-00f18efc2291?auto=format&fit=crop&q=100&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-vsblue/70 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col items-center justify-center text-white">
+                        <span class="font-serif text-2xl mb-2">Urban Apartment</span>
+                        <span class="text-sm font-light tracking-widest uppercase">Gisozi</span>
+                    </div>
+                </div>
+                <div class="h-80 md:h-96 rounded-2xl overflow-hidden relative group shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=100&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-vsblue/70 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col items-center justify-center text-white">
+                        <span class="font-serif text-2xl mb-2">Executive Office</span>
+                        <span class="text-sm font-light tracking-widest uppercase">Kiyovu</span>
+                    </div>
+                </div>
+                <div class="h-80 md:h-96 rounded-2xl overflow-hidden relative group md:col-span-2 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=100&w=1600" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-vsblue/70 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col items-center justify-center text-white">
+                        <span class="font-serif text-3xl mb-2">Luxury Condo Styling</span>
+                        <span class="text-sm font-light tracking-widest uppercase">Nyarutarama</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                 <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20would%20like%20to%20discuss%20an%20interior%20design%20project." target="_blank" class="inline-block px-10 py-4 bg-vsblue text-white rounded-none text-center font-bold tracking-widest uppercase text-xs hover:bg-vsred transition-all duration-300">
+                    Start Your Project
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="bg-vsblue text-white pt-24 pb-12 border-t-[6px] border-vsred">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16 mb-16 border-b border-white/10 pb-16">
+                
+                <!-- Brand Info -->
+                <div class="md:col-span-2">
+                    <img src="download.png" alt="Vitastyle Company Logo" class="h-20 w-auto object-contain bg-white rounded-xl p-3 mb-6">
+                    <h3 class="font-serif text-2xl mb-4 font-light text-white">Work with us and save your money.</h3>
+                    <p class="text-sm text-gray-400 font-light leading-relaxed max-w-sm">
+                        Vitastyle is Kigali's premier destination for high-end furniture and bespoke interior design. We merge uncompromising quality with smart value.
+                    </p>
+                </div>
+
+                <!-- Contact Details -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-6 text-gray-400">Inquiries</h4>
+                    <ul class="space-y-4 text-sm font-light text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-vsgold mr-3">📍</span>
+                            <span>Kigali, Gisozi<br>Rwanda</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-whatsapp mr-3">💬</span>
+                            <a href="https://wa.me/250788421306" class="hover:text-white transition-colors">+250 788 421 306</a>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-vsgold mr-3">📞</span>
+                            <span>+250 786 675 799</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-vsgold mr-3">✉️</span>
+                            <a href="mailto:sergekwizera28@gmail.com" class="hover:text-white transition-colors">sergekwizera28@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-6 text-gray-400">Navigation</h4>
+                    <ul class="space-y-3 text-sm font-light text-gray-300">
+                        <li><a href="#cat-living" class="hover:text-vsgold transition-colors">Living Collection</a></li>
+                        <li><a href="#cat-bedroom" class="hover:text-vsgold transition-colors">Bedroom Collection</a></li>
+                        <li><a href="#cat-dining" class="hover:text-vsgold transition-colors">Dining Collection</a></li>
+                        <li><a href="#portfolio" class="hover:text-vsgold transition-colors">Design Portfolio</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-gray-500 text-xs font-light tracking-widest uppercase flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Vitastyle Company. All rights reserved.</p>
+                <p>Designed for Luxury.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global Floating WhatsApp Button -->
+    <a href="https://wa.me/250788421306?text=Hello%20Vitastyle,%20I%20have%20an%20inquiry%20from%20your%20website." 
+       target="_blank" 
+       class="fixed bottom-6 right-6 bg-whatsapp text-white p-4 rounded-full shadow-[0_8px_30px_rgba(37,211,102,0.4)] hover:scale-110 hover:bg-green-600 transition-all duration-300 z-50 flex items-center justify-center animate-bounce"
+       title="Chat with us on WhatsApp">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 1.84 6.366L0 24l5.82-1.785A12 12 0 1 0 11.944 0zM18.5 16.5c-.2.6-.9 1.1-1.6 1.3-.6.1-1.3.2-3.8-1-2.9-1.3-4.8-4.4-4.9-4.5-.1-.2-1.2-1.6-1.2-3.1s.8-2.2 1.1-2.5c.3-.3.6-.4.9-.4h.3c.3 0 .5.1.7.6.2.6.8 1.9.9 2 .1.2.1.4 0 .6-.1.2-.2.3-.4.5l-.4.5c-.2.2-.4.4-.1.8.3.5.7 1.1 1.2 1.5.6.5 1.1.8 1.6 1 .4.2.7.1.9-.1.2-.2.4-.6.6-.8.2-.2.4-.2.7-.1.3.1 1.8.8 1.9.9.1.1.2.2.3.4.1.2.1.8-.1 1.4z"/></svg>
+    </a>
+
+</body>
+</html>
