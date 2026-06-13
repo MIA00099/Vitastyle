@@ -227,12 +227,22 @@
 
       <!-- Central product video -->
       <div class="relative z-10 w-full max-w-[720px] mx-auto mt-[-4%]">
-        <video autoplay loop muted playsinline preload="metadata"
+      <video autoplay loop muted playsinline preload="metadata" id="hero-video"
                class="w-full h-auto rounded-2xl shadow-lg object-cover animate-spring-2 opacity-0"
                style="mix-blend-mode:darken">
-          <source src="turn_into_live_x_.mp4" type="video/mp4">
-        </video>
-      </div>
+           <source src="turn_into_live_x_.mp4" type="video/mp4">
+           Your browser does not support the video tag.
+         </video>
+
+         <div class="absolute bottom-3 right-3 z-40 flex gap-2">
+           <button onclick="pauseVideo()" class="w-11 h-11 rounded-full bg-vsdark/80 text-vscream flex items-center justify-center hover:bg-vsdark transition-all backdrop-blur-sm">
+             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
+           </button>
+           <button onclick="playVideo()" class="w-11 h-11 rounded-full bg-vsdark/80 text-vscream flex items-center justify-center hover:bg-vsdark transition-all backdrop-blur-sm hidden">
+             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+           </button>
+         </div>
+       </div>
 
       <!-- Centered company description -->
       <div class="absolute bottom-[15%] sm:bottom-[18%] left-1/2 -translate-x-1/2 z-30 text-center max-w-md px-6">
@@ -1214,6 +1224,20 @@ create policy "Auth write"
       btn.classList.toggle('active', match);
     });
   }, { passive: true });
+
+  // ─── VIDEO CONTROLS ────────────────────────────────────────────────────────
+  function playVideo() {
+    const video = document.getElementById('hero-video');
+    video.play();
+    document.querySelector('#hero-video + div button:first-child').classList.remove('hidden');
+    document.querySelector('#hero-video + div button:last-child').classList.add('hidden');
+  }
+  function pauseVideo() {
+    const video = document.getElementById('hero-video');
+    video.pause();
+    document.querySelector('#hero-video + div button:first-child').classList.add('hidden');
+    document.querySelector('#hero-video + div button:last-child').classList.remove('hidden');
+  }
   </script>
 </body>
 </html>
