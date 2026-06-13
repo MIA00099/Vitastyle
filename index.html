@@ -126,14 +126,9 @@
 
     /* Scroll reveal */
     .reveal {
-      opacity: 0;
-      transform: translateY(30px);
+      opacity: 1;
       transition: opacity 0.6s ease, transform 0.6s ease;
       will-change: opacity, transform;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     /* Image aspect trick */
@@ -828,7 +823,7 @@ create policy "Auth write"
     const sortedCats = catOrder.filter(c => groups[c]);
 
     container.innerHTML = sortedCats.map(cat => `
-      <div class="mb-20 reveal" id="cat-section-${slugify(cat)}" style="content-visibility:auto;contain-intrinsic-size:0 800px;">
+      <div class="mb-20" id="cat-section-${slugify(cat)}">
         <div class="flex items-center gap-4 mb-8">
           <h3 class="font-display font-bold text-2xl text-vsdark whitespace-nowrap">${cat}</h3>
           <div class="flex-1 h-px bg-vsdark/10"></div>
