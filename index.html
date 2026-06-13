@@ -761,6 +761,136 @@ textarea {
   }
 }
 
+
+
+/* ─────────────────────────────────────
+   FINAL PREMIUM UI — Vitastyle homepage
+   Mobile-first redesign based on the approved reference.
+───────────────────────────────────── */
+.premium-nav{
+  background:rgba(22,18,15,.96)!important;
+  height:62px!important;
+  padding:0 20px!important;
+  display:grid!important;
+  grid-template-columns:48px 1fr 48px!important;
+  align-items:center!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.28)!important;
+}
+.premium-nav .nav-logo{justify-content:center;font-size:20px;letter-spacing:.24em;}
+.nav-icon-btn,.cart-btn{width:42px;height:42px;border:0;background:transparent;color:var(--white);display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:18px;cursor:pointer;}
+.cart-btn:hover,.nav-icon-btn:hover{background:rgba(255,255,255,.08);}
+.premium-nav .nav-center{justify-content:center;gap:4px;}
+.premium-nav .nav-tab{padding:8px 12px;color:rgba(255,255,255,.52);}
+.premium-nav .nav-tab.active{color:var(--gold-light);}
+.premium-hero{
+  min-height:520px;
+  padding:0!important;
+  display:flex;
+  align-items:center;
+  text-align:left!important;
+  background:
+    linear-gradient(90deg, rgba(28,20,15,.90) 0%, rgba(35,22,13,.70) 42%, rgba(35,22,13,.18) 100%),
+    url('Image/IMG-20260612-WA0102.jpg') center/cover no-repeat!important;
+}
+.premium-hero::before,.premium-hero::after{display:none!important;}
+.hero-overlay{position:absolute;inset:0;background:radial-gradient(circle at 20% 70%, rgba(197,139,102,.22), transparent 42%);pointer-events:none;}
+.hero-content{position:relative;z-index:2;width:min(1120px,100%);margin:0 auto;padding:80px 28px;}
+.hero-kicker,.eyebrow{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-light);font-weight:700;display:block;margin-bottom:10px;}
+.premium-hero h1{font-size:clamp(46px,7vw,82px)!important;line-height:.92!important;max-width:590px;margin-bottom:18px!important;text-shadow:0 8px 32px rgba(0,0,0,.35);}
+.premium-hero h1 em{color:#f1d6c2!important;}
+.premium-hero .hero-sub{margin:0 0 24px!important;max-width:430px!important;color:rgba(255,255,255,.82)!important;font-size:16px!important;line-height:1.65!important;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.primary-cta,.whatsapp-cta{border:0;border-radius:14px;padding:13px 28px;min-height:48px;font-weight:800;font-size:12px;letter-spacing:.04em;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .18s,background .18s,border-color .18s;}
+.primary-cta{background:var(--gold-light);color:var(--dark);}
+.whatsapp-cta{background:rgba(0,0,0,.25);color:white;border:1px solid rgba(255,255,255,.35);display:flex;align-items:center;gap:8px;}
+.whatsapp-cta i{color:var(--green);font-size:17px;}
+.primary-cta:hover,.whatsapp-cta:hover{transform:translateY(-2px);}
+.trust-strip{max-width:1120px;margin:-26px auto 0;position:relative;z-index:5;background:rgba(255,255,255,.94);border:1px solid rgba(197,139,102,.18);box-shadow:var(--shadow);border-radius:22px;display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden;}
+.trust-item{padding:20px 14px;text-align:center;border-right:1px solid var(--stone-50);display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--dark);}
+.trust-item:last-child{border-right:0;}
+.trust-item i{font-size:22px;color:var(--stone-600);margin-bottom:5px;}
+.trust-item strong{font-size:12px;line-height:1.2;}
+.trust-item span{font-size:10px;color:var(--stone-400);}
+.category-showcase,.promise-section{max-width:1120px;margin:0 auto;padding:46px 28px 0;}
+.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:18px;gap:18px;}
+.section-head h2,.promise-copy h2{font-family:var(--serif);font-size:clamp(30px,4vw,46px);font-weight:500;line-height:1.05;color:var(--dark);}
+.text-link{border:0;background:transparent;color:var(--stone-600);font-size:12px;font-weight:800;cursor:pointer;text-transform:uppercase;letter-spacing:.08em;}
+.category-card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.category-card{border:0;background:var(--white);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--stone-50);cursor:pointer;text-align:left;transition:transform .2s,box-shadow .2s;}
+.category-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);}
+.category-card img{width:100%;height:145px;object-fit:cover;}
+.category-card span{display:block;padding:13px 14px;font-weight:800;font-size:13px;color:var(--dark);}
+.promise-section{display:grid;grid-template-columns:.95fr 1.05fr;gap:28px;align-items:stretch;padding-bottom:8px;}
+.promise-copy{background:var(--dark);color:white;border-radius:26px;padding:34px;position:relative;overflow:hidden;}
+.promise-copy::after{content:'';position:absolute;right:-80px;bottom:-80px;width:220px;height:220px;border-radius:50%;background:rgba(197,139,102,.18);}
+.promise-copy h2{color:white;margin-bottom:16px;}
+.promise-copy p{color:rgba(255,255,255,.68);line-height:1.8;max-width:520px;}
+.promise-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.mini-card{background:var(--white);border-radius:22px;padding:24px;border:1px solid var(--stone-50);box-shadow:var(--shadow-sm);}
+.mini-card i{font-size:24px;color:var(--stone-600);margin-bottom:14px;display:block;}
+.mini-card h3{font-size:15px;margin-bottom:8px;color:var(--dark);}
+.mini-card p{font-size:13px;color:var(--stone-400);line-height:1.65;}
+.mini-card.testimonial{grid-column:1/-1;background:#fbf3e4;}
+.stars{color:#b77744;letter-spacing:.12em;margin-bottom:8px;}
+.mini-card strong{display:block;margin-top:8px;font-size:12px;color:var(--stone-600);}
+.premium-shop-meta{background:rgba(255,255,255,.55);border:1px solid var(--stone-50);padding:20px;border-radius:22px;margin-bottom:24px!important;align-items:center!important;}
+.catalog-tools{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:flex-end;}
+.catalog-tools #productCount{color:var(--stone-400);font-size:11px;text-transform:uppercase;letter-spacing:.12em;}
+.catalog-search{height:44px;min-width:260px;background:var(--white);border:1px solid var(--stone-100);border-radius:999px;display:flex;align-items:center;gap:8px;padding:0 14px;color:var(--stone-400);}
+.catalog-search input{border:0;outline:0;background:transparent;width:100%;color:var(--dark);font-size:16px;}
+.prod-card{border-radius:22px!important;box-shadow:0 10px 28px rgba(74,44,17,.08)!important;}
+.prod-img-wrap{height:250px!important;}
+.inquire-btn{background:#1f1712!important;border-radius:14px!important;}
+.footer-whatsapp{background:var(--gold-light);color:var(--dark);border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:8px;}
+.footer-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;font-size:11px;color:rgba(255,255,255,.55);}
+.footer-badges span{display:inline-flex;align-items:center;gap:6px;}
+.mobile-menu-foot{border-top:1px solid rgba(255,255,255,.08);padding-top:18px;color:rgba(255,255,255,.45);font-size:12px;display:flex;flex-direction:column;gap:5px;}
+.mobile-menu-foot strong{color:var(--gold-light);}
+@media(min-width:769px){
+  .premium-nav{grid-template-columns:180px 1fr 180px!important;}
+  .premium-nav .mobile-menu-btn{display:none!important;}
+  .premium-nav .cart-btn{margin-left:auto;}
+  .premium-nav .nav-logo{justify-content:flex-start;}
+}
+@media(max-width:768px){
+  .premium-nav{height:56px!important;padding:0 12px!important;}
+  .premium-nav .nav-center{display:none!important;}
+  .premium-nav .nav-logo{font-size:17px;letter-spacing:.22em;}
+  .premium-hero{min-height:426px;background-position:center!important;align-items:flex-end;}
+  .hero-content{padding:84px 22px 34px;}
+  .hero-kicker{font-size:9px;letter-spacing:.16em;margin-bottom:8px;}
+  .premium-hero h1{font-size:clamp(38px,12vw,54px)!important;line-height:.96!important;margin-bottom:12px!important;}
+  .premium-hero .hero-sub{font-size:13px!important;line-height:1.55!important;max-width:330px!important;margin-bottom:16px!important;}
+  .hero-actions{gap:10px;}
+  .primary-cta,.whatsapp-cta{width:auto;min-width:154px;justify-content:center;padding:11px 16px;min-height:44px;border-radius:13px;font-size:11px;}
+  .trust-strip{margin:0;border-radius:0;grid-template-columns:repeat(4,1fr);box-shadow:none;border-left:0;border-right:0;}
+  .trust-item{padding:14px 5px;}
+  .trust-item i{font-size:18px;}
+  .trust-item strong{font-size:9px;}
+  .trust-item span{font-size:8px;}
+  .category-showcase,.promise-section{padding:28px 14px 0;}
+  .compact-head{align-items:center;}
+  .section-head h2,.promise-copy h2{font-size:30px;}
+  .category-card-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .category-card{border-radius:16px;}
+  .category-card img{height:118px;}
+  .category-card span{font-size:11px;padding:10px;text-align:center;}
+  .promise-section{grid-template-columns:1fr;gap:12px;}
+  .promise-copy{padding:24px;border-radius:20px;}
+  .promise-cards{grid-template-columns:1fr;gap:10px;}
+  .mini-card{padding:18px;border-radius:18px;}
+  .premium-shop-meta{align-items:stretch!important;padding:16px!important;}
+  .catalog-tools{width:100%;justify-content:space-between;gap:10px;}
+  .catalog-search{order:2;width:100%;min-width:0;}
+  .prod-img-wrap{height:clamp(138px,42vw,186px)!important;}
+  .site-footer{text-align:center;}
+}
+@media(max-width:380px){
+  .primary-cta,.whatsapp-cta{width:100%;}
+  .premium-hero{min-height:470px;}
+  .category-card img{height:100px;}
+}
+
 </style>
 </head>
 <body>
@@ -781,13 +911,18 @@ textarea {
 </div>
 
 <!-- NAVIGATION -->
-<nav id="main-nav">
-  <div class="nav-logo" id="navLogo">VITASTYLE</div>
+<nav id="main-nav" class="premium-nav">
+  <button class="mobile-menu-btn nav-icon-btn" aria-label="Open menu" onclick="document.getElementById('mobile-menu').classList.add('open')"><i class="fas fa-bars"></i></button>
+  <div class="nav-logo" id="navLogo" onclick="goHome()">VITASTYLE</div>
   <div class="nav-center">
-    <button class="nav-tab active" onclick="showView('shop')"><i class="fas fa-store" style="margin-right:5px"></i>Shop</button>
+    <button class="nav-tab active" data-nav="home" onclick="goHome()">Home</button>
+    <button class="nav-tab" data-nav="shop" onclick="goShop()">Shop</button>
+    <button class="nav-tab" data-nav="categories" onclick="goCategories()">Categories</button>
+    <button class="nav-tab" data-nav="about" onclick="goAbout()">About</button>
+    <button class="nav-tab" data-nav="contact" onclick="openWhatsAppGeneral()">Contact</button>
   </div>
   <div class="nav-right">
-    <button class="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.add('open')"><i class="fas fa-bars"></i></button>
+    <button class="cart-btn" aria-label="Order via WhatsApp" onclick="openWhatsAppGeneral()"><i class="fas fa-cart-shopping"></i></button>
   </div>
 </nav>
 
@@ -795,10 +930,18 @@ textarea {
 <div id="mobile-menu">
   <div class="mobile-menu-header">
     <div class="nav-logo">VITASTYLE</div>
-    <button class="mobile-menu-close" onclick="document.getElementById('mobile-menu').classList.remove('open')"><i class="fas fa-times"></i></button>
+    <button class="mobile-menu-close" aria-label="Close menu" onclick="document.getElementById('mobile-menu').classList.remove('open')"><i class="fas fa-times"></i></button>
   </div>
   <div class="mobile-nav-links">
-    <div class="mobile-nav-link" onclick="document.getElementById('mobile-menu').classList.remove('open');showView('shop')">Shop</div>
+    <div class="mobile-nav-link" onclick="closeMenu();goHome()">Home</div>
+    <div class="mobile-nav-link" onclick="closeMenu();goShop()">Shop</div>
+    <div class="mobile-nav-link" onclick="closeMenu();goCategories()">Categories</div>
+    <div class="mobile-nav-link" onclick="closeMenu();goAbout()">About</div>
+    <div class="mobile-nav-link" onclick="closeMenu();openWhatsAppGeneral()">WhatsApp</div>
+  </div>
+  <div class="mobile-menu-foot">
+    <span>Premium furniture · Kigali, Gisozi</span>
+    <strong>+250 788 421 306</strong>
   </div>
 </div>
 
@@ -833,25 +976,83 @@ textarea {
 
 <!-- SHOP VIEW -->
 <div id="view-shop">
-  <div class="hero">
-    <div class="hero-owner">
-      <img src="logo.png" alt="Vitastyle">
+  <section class="hero premium-hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-kicker">Kigali, Gisozi · Premium furniture</div>
+      <h1>Soft Premium<br>Furniture,<br><em>For Kigali Homes</em></h1>
+      <p class="hero-sub">Premium furniture and interior design in Kigali, Gisozi. Order easily via WhatsApp — we deliver to your door.</p>
+      <div class="hero-actions">
+        <button class="primary-cta" onclick="goShop()">Shop Now</button>
+        <button class="whatsapp-cta" onclick="openWhatsAppGeneral()"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</button>
+      </div>
     </div>
-    <div class="hero-tag">Kigali, Gisozi — Premium Furniture</div>
-    <h1>Soft Premium Furniture,<br><em>For Kigali Homes</em></h1>
-    <p class="hero-sub">Vitastyle brings you premium furniture and interior design in Kigali, Gisozi. Order easily via WhatsApp — we deliver to your door.</p>
-    <div class="hero-search">
-      <input id="searchInput" type="search" placeholder="Search products..." oninput="handleSearch(this.value)">
-      <button onclick="handleSearch(document.getElementById('searchInput').value)">Search</button>
+  </section>
+
+  <section class="trust-strip" aria-label="Why choose Vitastyle">
+    <div class="trust-item"><i class="far fa-star"></i><strong>Premium Quality</strong><span>Built to last</span></div>
+    <div class="trust-item"><i class="fas fa-border-all"></i><strong>Modern Designs</strong><span>For every home</span></div>
+    <div class="trust-item"><i class="fas fa-truck-fast"></i><strong>Fast Delivery</strong><span>In Kigali</span></div>
+    <div class="trust-item"><i class="fas fa-cart-shopping"></i><strong>Easy Order</strong><span>Via WhatsApp</span></div>
+  </section>
+
+  <section class="category-showcase" id="categoryShowcase">
+    <div class="section-head compact-head">
+      <div>
+        <span class="eyebrow">Browse faster</span>
+        <h2>Shop by Category</h2>
+      </div>
+      <button class="text-link" onclick="goShop()">View all</button>
     </div>
-  </div>
-  <main class="shop-wrap">
+    <div class="category-card-grid">
+      <button class="category-card" onclick="quickCategory('Sofa Sets')">
+        <img src="Image/IMG-20260612-WA0102.jpg" alt="Bedroom and sofa furniture" loading="lazy">
+        <span>Sofas</span>
+      </button>
+      <button class="category-card" onclick="quickCategory('Dining Tables')">
+        <img src="Image/IMG-20260612-WA0106.jpg" alt="Dining room furniture" loading="lazy">
+        <span>Dining</span>
+      </button>
+      <button class="category-card" onclick="quickCategory('Kitchen Cabinets')">
+        <img src="Image/IMG-20260612-WA0092.jpg" alt="Kitchen cabinets" loading="lazy">
+        <span>Kitchen & Pantry</span>
+      </button>
+      <button class="category-card" onclick="quickCategory('TV Stands')">
+        <img src="Image/IMG-20260612-WA0058.jpg" alt="TV wall unit" loading="lazy">
+        <span>TV Stands</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="promise-section" id="aboutSection">
+    <div class="promise-copy">
+      <span class="eyebrow">Our Promise</span>
+      <h2>Quality furniture. Happy homes. Delivered with care.</h2>
+      <p>Vitastyle helps you choose beautiful furniture for living rooms, bedrooms, offices, dining rooms, kitchens, and custom interior design projects.</p>
+    </div>
+    <div class="promise-cards">
+      <article class="mini-card"><i class="fas fa-shield-halved"></i><h3>Trust & Quality</h3><p>Strong furniture, clean finishing, and carefully selected designs.</p></article>
+      <article class="mini-card"><i class="fas fa-comments"></i><h3>Easy Support</h3><p>Ask questions, request prices, and order directly on WhatsApp.</p></article>
+      <article class="mini-card testimonial"><div class="stars">★★★★★</div><p>“Excellent quality and service. Highly recommend Vitastyle!”</p><strong>— Aline, Kigali</strong></article>
+    </div>
+  </section>
+
+  <main class="shop-wrap" id="catalogStart">
     <div class="shop-layout">
       <aside class="cat-sidebar" id="filterBar"></aside>
       <div class="shop-content">
-        <div class="shop-meta">
-          <h2>Catalog</h2>
-          <span id="productCount">0 items</span>
+        <div class="shop-meta premium-shop-meta">
+          <div>
+            <span class="eyebrow">Catalog</span>
+            <h2>Explore Products</h2>
+          </div>
+          <div class="catalog-tools">
+            <span id="productCount">0 items</span>
+            <label class="catalog-search">
+              <i class="fas fa-search"></i>
+              <input id="searchInput" type="search" placeholder="Search products..." oninput="handleSearch(this.value)">
+            </label>
+          </div>
         </div>
         <div class="product-grid" id="productGrid"></div>
       </div>
@@ -927,7 +1128,7 @@ textarea {
 </div>
 
 <!-- FOOTER -->
-<footer class="site-footer">
+<footer class="site-footer" id="contactSection">
   <div class="footer-inner">
     <div>
       <div class="footer-brand"><img src="logo.png" alt=""> VITASTYLE</div>
@@ -940,17 +1141,21 @@ textarea {
       <div class="footer-item"><i class="fas fa-map-marker-alt"></i> Kigali, Gisozi</div>
     </div>
     <div>
-      <div class="footer-heading">Quick Links</div>
-      <a href="#" onclick="showView('shop');return false" class="footer-item"><i class="fas fa-store"></i> Shop</a>
-      <a href="https://wa.me/250788421306" target="_blank" class="footer-item"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <div class="footer-heading">Need Help?</div>
+      <button class="footer-whatsapp" onclick="openWhatsAppGeneral()"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</button>
+      <div class="footer-badges"><span><i class="fas fa-lock"></i> Secure payments</span><span><i class="fas fa-truck"></i> Delivery across Kigali</span></div>
     </div>
   </div>
-  <div class="footer-bottom">© 2026 Vitastyle. All rights reserved.</div>
+  <div class="footer-bottom">© 2026 Vitastyle. Premium furniture and interior design in Kigali, Gisozi.</div>
 </footer>
 
 <!-- MOBILE BOTTOM NAV -->
 <div id="mobile-bottom-nav">
-  <button class="mob-nav-item active" onclick="showView('shop')"><i class="fas fa-store"></i><span>Shop</span></button>
+  <button class="mob-nav-item active" data-nav="home" onclick="goHome()"><i class="fas fa-home"></i><span>Home</span></button>
+  <button class="mob-nav-item" data-nav="shop" onclick="goShop()"><i class="fas fa-store"></i><span>Shop</span></button>
+  <button class="mob-nav-item" data-nav="categories" onclick="goCategories()"><i class="fas fa-border-all"></i><span>Categories</span></button>
+  <button class="mob-nav-item" data-nav="whatsapp" onclick="openWhatsAppGeneral()"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button>
+  <button class="mob-nav-item" data-nav="about" onclick="goAbout()"><i class="far fa-user"></i><span>About</span></button>
 </div>
 
 <script>
@@ -1135,17 +1340,20 @@ document.getElementById('delete-modal').addEventListener('click', function(e) { 
 /* ══════════════════════════════════════
    VIEW ROUTING
 ══════════════════════════════════════ */
-function showView(view) {
+function setActiveNav(target) {
+  document.querySelectorAll('.nav-tab, .mob-nav-item').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.nav === target);
+  });
+}
+
+function showView(view, navTarget = 'home') {
   document.getElementById('view-shop').classList.toggle('hide', view !== 'shop');
   document.getElementById('view-detail').classList.toggle('hide', view !== 'detail');
   document.getElementById('view-admin').classList.toggle('hide', view !== 'admin');
-  document.querySelectorAll('.nav-tab, .mob-nav-item').forEach(b => b.classList.remove('active'));
-  if (view === 'shop') {
-    document.querySelectorAll('.nav-tab, .mob-nav-item')[0]?.classList.add('active');
-    renderProducts();
-  }
+  if (view === 'shop') renderProducts();
   if (view === 'admin') renderAdminProducts();
-  window.scrollTo({ top: 0 });
+  setActiveNav(navTarget);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ══════════════════════════════════════
@@ -1409,6 +1617,55 @@ function resetProductForm() {
 function showAdminPage(page) {
   document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
   document.getElementById('admin-' + page).classList.add('active');
+}
+
+
+/* ══════════════════════════════════════
+   FINAL UI NAVIGATION HELPERS
+══════════════════════════════════════ */
+function closeMenu() {
+  document.getElementById('mobile-menu')?.classList.remove('open');
+}
+function scrollToElement(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function goHome() {
+  closeMenu();
+  activeCategory = 'All';
+  searchTerm = '';
+  const search = document.getElementById('searchInput');
+  if (search) search.value = '';
+  showView('shop', 'home');
+}
+function goShop() {
+  closeMenu();
+  showView('shop', 'shop');
+  setTimeout(() => scrollToElement('catalogStart'), 80);
+}
+function goCategories() {
+  closeMenu();
+  showView('shop', 'categories');
+  setTimeout(() => scrollToElement('categoryShowcase'), 80);
+}
+function goAbout() {
+  closeMenu();
+  showView('shop', 'about');
+  setTimeout(() => scrollToElement('aboutSection'), 80);
+}
+function quickCategory(category) {
+  activeCategory = category;
+  searchTerm = '';
+  const search = document.getElementById('searchInput');
+  if (search) search.value = '';
+  renderProducts();
+  setActiveNav('categories');
+  setTimeout(() => scrollToElement('catalogStart'), 80);
+}
+function openWhatsAppGeneral() {
+  setActiveNav('whatsapp');
+  const text = encodeURIComponent('Hello Vitastyle, I would like to order furniture or ask about your products.');
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
 }
 
 /* ══════════════════════════════════════
