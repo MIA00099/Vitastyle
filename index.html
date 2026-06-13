@@ -119,15 +119,14 @@ input,select,textarea{-webkit-tap-highlight-color:transparent;}
 .hero-owner{width:130px;height:130px;margin:0 auto 28px;border-radius:50%;overflow:hidden;border:3px solid rgba(197,139,102,.5);box-shadow:0 10px 30px rgba(0,0,0,.35);position:relative;z-index:2;}
 .hero-owner img{width:100%;height:100%;object-fit:cover;}
 
-/* ── FILTER BAR ── */
-.filter-bar{background:var(--white);border-bottom:1px solid var(--stone-100);padding:14px 28px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;position:sticky;top:68px;z-index:100;box-shadow:0 2px 12px rgba(74,44,17,.05);}
-.filter-bar::-webkit-scrollbar{display:none;}
-.chip{background:none;border:1px solid var(--stone-100);color:var(--stone-400);font-size:12px;font-weight:500;padding:7px 18px;border-radius:24px;cursor:pointer;white-space:nowrap;transition:all .18s ease;letter-spacing:.02em;}
-.chip:hover{border-color:var(--stone-800);color:var(--dark);background:var(--stone-50);}
-.chip.active{background:var(--dark);color:var(--white);border-color:var(--dark);box-shadow:0 2px 10px rgba(74,44,17,.18);}
-
-/* ── SHOP GRID ── */
+/* ── SHOP ── */
 .shop-wrap{max-width:1200px;margin:0 auto;padding:44px 28px 80px;}
+.shop-layout{display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:start;}
+.cat-sidebar{position:sticky;top:88px;display:flex;flex-direction:column;gap:2px;}
+.cat-sidebar .chip{display:block;width:100%;text-align:left;background:none;border:1px solid transparent;color:var(--stone-400);font-size:13px;font-weight:500;padding:10px 14px;border-radius:var(--radius);cursor:pointer;white-space:nowrap;transition:all .18s ease;letter-spacing:.02em;}
+.cat-sidebar .chip:hover{border-color:var(--stone-100);color:var(--dark);background:var(--stone-50);}
+.cat-sidebar .chip.active{background:var(--dark);color:var(--white);border-color:var(--dark);box-shadow:0 2px 10px rgba(74,44,17,.18);}
+.shop-content{min-width:0;}
 .shop-meta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid var(--stone-100);}
 .shop-meta h2{font-family:var(--serif);font-size:34px;font-weight:400;}
 .shop-meta span{font-size:12px;color:var(--stone-400);text-transform:uppercase;letter-spacing:.12em;}
@@ -221,13 +220,15 @@ tbody tr:hover td{background:#fdfaf7;}
   .mobile-menu-btn{display:flex;align-items:center;justify-content:center;width:40px;height:40px;}
   #main-nav{padding:0 18px;height:60px;}
   .nav-logo{font-size:19px;}
-  .filter-bar{top:60px;padding:10px 14px;gap:6px;}
   .hero{padding:52px 20px 44px;}
   .hero h1{font-size:clamp(34px,10vw,52px);}
   .hero-owner{width:100px;height:100px;margin-bottom:20px;}
   .hero-search{max-width:100%;}
   .hero-search input{font-size:16px;padding:13px 16px;}
   .shop-wrap{padding:28px 16px 100px;}
+  .shop-layout{grid-template-columns:1fr;gap:16px;}
+  .cat-sidebar{position:static;flex-direction:row;overflow-x:auto;padding:4px 0;gap:4px;white-space:nowrap;}
+  .cat-sidebar .chip{display:inline-block;width:auto;font-size:12px;padding:7px 14px;}
   .product-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
   .prod-img-wrap{height:160px;}
   .prod-body{padding:14px 14px 16px;}
@@ -350,13 +351,17 @@ tbody tr:hover td{background:#fdfaf7;}
       <button onclick="handleSearch(document.getElementById('searchInput').value)">Search</button>
     </div>
   </div>
-  <div class="filter-bar" id="filterBar"></div>
   <main class="shop-wrap">
-    <div class="shop-meta">
-      <h2>Catalog</h2>
-      <span id="productCount">0 items</span>
+    <div class="shop-layout">
+      <aside class="cat-sidebar" id="filterBar"></aside>
+      <div class="shop-content">
+        <div class="shop-meta">
+          <h2>Catalog</h2>
+          <span id="productCount">0 items</span>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+      </div>
     </div>
-    <div class="product-grid" id="productGrid"></div>
   </main>
 </div>
 
@@ -498,73 +503,83 @@ async function fetchProducts() {
    DEMO DATA — 66 products from Image/
 ══════════════════════════════════════ */
 function loadDemoCatalog() {
+  const catLR = 'Living Room Furniture';
+  const catBD = 'Bedroom Furniture';
+  const catDR = 'Dining Room Furniture';
+  const catOF = 'Office Furniture';
+  const catKF = 'Kitchen Furniture';
+  const catOut= 'Outdoor Furniture';
+  const catCus= 'Custom Furniture';
+  const catInt= 'Interior Design Services';
+  const catPop= 'Popular Products';
+  const catAcc= 'Accessories';
   const demo = [
-    { id:'d1',  name:'Marble TV Wall Unit',          category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0048.jpg',  mediaType:'image' },
-    { id:'d2',  name:'Wooden TV Entertainment Center', category:'Living Room',  mediaUrl:'Image/IMG-20260612-WA0050.jpg',  mediaType:'image' },
-    { id:'d3',  name:'Modern TV Wall Unit',           category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0051.jpg',  mediaType:'image' },
-    { id:'d4',  name:'TV Stand with Zigzag Shelf',    category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0052.jpg',  mediaType:'image' },
-    { id:'d5',  name:'Low Profile TV Stand',          category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0053.jpg',  mediaType:'image' },
-    { id:'d6',  name:'TV Wall Panel with Floating Console', category:'Living Room', mediaUrl:'Image/IMG-20260612-WA0054.jpg', mediaType:'image' },
-    { id:'d7',  name:'TV Wall Unit with Glass Shelves', category:'Living Room',  mediaUrl:'Image/IMG-20260612-WA0055.jpg',  mediaType:'image' },
-    { id:'d8',  name:'Floating Console with Wood Slats', category:'Living Room', mediaUrl:'Image/IMG-20260612-WA0056.jpg', mediaType:'image' },
-    { id:'d9',  name:'White Minimalist TV Console',    category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0057.jpg',  mediaType:'image' },
-    { id:'d10', name:'TV Wall Panel with LED Backlight', category:'Living Room', mediaUrl:'Image/IMG-20260612-WA0058.jpg', mediaType:'image' },
-    { id:'d11', name:'TV Wall with Wood Slats',        category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0059.jpg',  mediaType:'image' },
-    { id:'d12', name:'Luxury TV Wall with Illuminated Display', category:'Living Room', mediaUrl:'Image/IMG-20260612-WA0060.jpg', mediaType:'image' },
-    { id:'d13', name:'Black and White TV Wall Unit',   category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0061.jpg',  mediaType:'image' },
-    { id:'d14', name:'Marble Panel TV Wall with LED Strip', category:'Living Room', mediaUrl:'Image/IMG-20260612-WA0062.jpg', mediaType:'image' },
-    { id:'d15', name:'Marble TV Wall with Floating Console', category:'Living Room', mediaUrl:'Image/IMG-20260612-WA0063.jpg', mediaType:'image' },
-    { id:'d16', name:'Complete Marble TV Wall Unit',   category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0064.jpg',  mediaType:'image' },
-    { id:'d17', name:'Finished Marble TV Wall Unit',   category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0065.jpg',  mediaType:'image' },
-    { id:'d18', name:'Marble TV Wall with Wood Accents', category:'Living Room', mediaUrl:'Image/IMG-20260612-WA0066.jpg', mediaType:'image' },
-    { id:'d19', name:'Marble TV Wall Final Installation', category:'Living Room', mediaUrl:'Image/IMG-20260612-WA0067.jpg', mediaType:'image' },
-    { id:'d20', name:'Flip-Top Shoe Cabinet',          category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0068.jpg',  mediaType:'image' },
-    { id:'d21', name:'Shoe Storage Bench with Cushion', category:'Living Room',   mediaUrl:'Image/IMG-20260612-WA0069.jpg',  mediaType:'image' },
-    { id:'d22', name:'Sculptural Wood Mirror Frame',   category:'Bar & Accents',  mediaUrl:'Image/IMG-20260612-WA0070.jpg',  mediaType:'image' },
-    { id:'d23', name:'Louvered Door Shoe Cabinet',     category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0071.jpg',  mediaType:'image' },
-    { id:'d24', name:'Shoe Rack with Mirror',          category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0072.jpg',  mediaType:'image' },
-    { id:'d25', name:'Wooden Shoe Rack with Drawer',   category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0073.jpg',  mediaType:'image' },
-    { id:'d26', name:'Rotating Shoe Rack Tower',       category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0074.jpg',  mediaType:'image' },
-    { id:'d27', name:'Curved Shelf Shoe Rack',         category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0075.jpg',  mediaType:'image' },
-    { id:'d28', name:'Wooden Shoe Rack Multi-Shelf',   category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0076.jpg',  mediaType:'image' },
-    { id:'d29', name:'Glass Door Display Cabinet',     category:'Workspace',      mediaUrl:'Image/IMG-20260612-WA0077.jpg',  mediaType:'image' },
-    { id:'d30', name:'Black Metal Bookcase',           category:'Workspace',      mediaUrl:'Image/IMG-20260612-WA0078.jpg',  mediaType:'image' },
-    { id:'d31', name:'Executive Office Desk Set',      category:'Workspace',      mediaUrl:'Image/IMG-20260612-WA0079.jpg',  mediaType:'image' },
-    { id:'d32', name:'LED Reception Desk',             category:'Workspace',      mediaUrl:'Image/IMG-20260612-WA0080.jpg',  mediaType:'image' },
-    { id:'d33', name:'Wood Slatted Bar Counter',       category:'Bar & Accents',  mediaUrl:'Image/IMG-20260612-WA0081.jpg',  mediaType:'image' },
-    { id:'d34', name:'Modern L-Shaped Office Desk',    category:'Workspace',      mediaUrl:'Image/IMG-20260612-WA0082.jpg',  mediaType:'image' },
-    { id:'d35', name:'Executive L-Shaped Desk',        category:'Workspace',      mediaUrl:'Image/IMG-20260612-WA0083.jpg',  mediaType:'image' },
-    { id:'d36', name:'Modern Office Desk with Cabinet', category:'Workspace',     mediaUrl:'Image/IMG-20260612-WA0084.jpg',  mediaType:'image' },
-    { id:'d37', name:'Sculptural Floor Mirror',        category:'Bar & Accents',  mediaUrl:'Image/IMG-20260612-WA0085.jpg',  mediaType:'image' },
-    { id:'d38', name:'Organic Wood Floor Mirror',      category:'Bar & Accents',  mediaUrl:'Image/IMG-20260612-WA0086.jpg',  mediaType:'image' },
-    { id:'d39', name:'White Vanity Table with Stool',  category:'Bedroom',        mediaUrl:'Image/IMG-20260612-WA0087.jpg',  mediaType:'image' },
-    { id:'d40', name:'Oval Wood Dowel Mirror',         category:'Bar & Accents',  mediaUrl:'Image/IMG-20260612-WA0088.jpg',  mediaType:'image' },
-    { id:'d41', name:'LED Hollywood Vanity Table',     category:'Bedroom',        mediaUrl:'Image/IMG-20260612-WA0089.jpg',  mediaType:'image' },
-    { id:'d42', name:'Ocean Wave Epoxy Dining Table',  category:'Dining',         mediaUrl:'Image/IMG-20260612-WA0090.jpg',  mediaType:'image' },
-    { id:'d43', name:'Round Epoxy Resin Side Table',   category:'Bar & Accents',  mediaUrl:'Image/IMG-20260612-WA0091.jpg',  mediaType:'image' },
-    { id:'d44', name:'Kitchen Cabinet with Stovetop',  category:'Kitchen & Pantry',mediaUrl:'Image/IMG-20260612-WA0092.jpg', mediaType:'image' },
-    { id:'d45', name:'Luxury TV Wall with Marble Panel', category:'Living Room',  mediaUrl:'Image/IMG-20260612-WA0093.jpg',  mediaType:'image' },
-    { id:'d46', name:'Custom Office Desks Batch',      category:'Workspace',      mediaUrl:'Image/IMG-20260612-WA0094.jpg',  mediaType:'image' },
-    { id:'d47', name:'White Vanity Dressing Table',    category:'Bedroom',        mediaUrl:'Image/IMG-20260612-WA0095.jpg',  mediaType:'image' },
-    { id:'d48', name:'Black Bar Counter',              category:'Bar & Accents',  mediaUrl:'Image/IMG-20260612-WA0096.jpg',  mediaType:'image' },
-    { id:'d49', name:'Yellow Velvet Chaise Lounge',   category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0097.jpg',  mediaType:'image' },
-    { id:'d50', name:'Blue Epoxy Resin Round Table',   category:'Bar & Accents',  mediaUrl:'Image/IMG-20260612-WA0098.jpg',  mediaType:'image' },
-    { id:'d51', name:'Floral Epoxy Dining Table',      category:'Dining',         mediaUrl:'Image/IMG-20260612-WA0099.jpg',  mediaType:'image' },
-    { id:'d52', name:'Marble Oval Dining Set',         category:'Dining',         mediaUrl:'Image/IMG-20260612-WA0100.jpg',  mediaType:'image' },
-    { id:'d53', name:'Kitchen Stovetop Cabinet',       category:'Kitchen & Pantry',mediaUrl:'Image/IMG-20260612-WA0101.jpg', mediaType:'image' },
-    { id:'d54', name:'Green Velvet Chesterfield Sofa', category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0102.jpg',  mediaType:'image' },
-    { id:'d55', name:'Gray Wood TV Console',           category:'Living Room',    mediaUrl:'Image/IMG-20260612-WA0103.jpg',  mediaType:'image' },
-    { id:'d56', name:'Marble Dining Table with Gold Legs', category:'Dining',     mediaUrl:'Image/IMG-20260612-WA0104.jpg',  mediaType:'image' },
-    { id:'d57', name:'Kitchen Dining Set',             category:'Dining',         mediaUrl:'Image/IMG-20260612-WA0105.jpg',  mediaType:'image' },
-    { id:'d58', name:'Wooden Dining Table with Navy Chairs', category:'Dining',   mediaUrl:'Image/IMG-20260612-WA0106.jpg', mediaType:'image' },
-    { id:'d59', name:'Tufted Velvet L-Shape Sectional', category:'Living Room',   mediaUrl:'Image/IMG-20260612-WA0107.jpg',  mediaType:'image' },
-    { id:'d60', name:'Marble Dining Table with Black Chairs', category:'Dining',  mediaUrl:'Image/IMG-20260612-WA0108.jpg', mediaType:'image' },
-    { id:'d61', name:'Tufted Nailhead Dining Chairs',  category:'Dining',         mediaUrl:'Image/IMG-20260612-WA0109.jpg',  mediaType:'image' },
-    { id:'d62', name:'Executive Office Desk',          category:'Workspace',      mediaUrl:'Image/IMG-20260612-WA0110.jpg',  mediaType:'image' },
-    { id:'d63', name:'Wood Dining Table with Tufted Chairs', category:'Dining',   mediaUrl:'Image/IMG-20260612-WA0111.jpg', mediaType:'image' },
-    { id:'d64', name:'Marble Dining Table with Bench', category:'Dining',         mediaUrl:'Image/IMG-20260612-WA0112.jpg',  mediaType:'image' },
-    { id:'d65', name:'Furniture Showcase Video',       category:'Video',          mediaUrl:'Image/VID-20260612-WA0014.mp4', mediaType:'video' },
-    { id:'d66', name:'Interior Design Walkthrough',    category:'Video',          mediaUrl:'Image/VID-20260612-WA0024.mp4', mediaType:'video' },
+    { id:'d1',  name:'Marble TV Wall Unit',              category:catLR, mediaUrl:'Image/IMG-20260612-WA0048.jpg',  mediaType:'image' },
+    { id:'d2',  name:'Wooden TV Entertainment Center',   category:catLR, mediaUrl:'Image/IMG-20260612-WA0050.jpg',  mediaType:'image' },
+    { id:'d3',  name:'Modern TV Wall Unit',              category:catLR, mediaUrl:'Image/IMG-20260612-WA0051.jpg',  mediaType:'image' },
+    { id:'d4',  name:'TV Stand with Zigzag Shelf',       category:catLR, mediaUrl:'Image/IMG-20260612-WA0052.jpg',  mediaType:'image' },
+    { id:'d5',  name:'Low Profile TV Stand',             category:catLR, mediaUrl:'Image/IMG-20260612-WA0053.jpg',  mediaType:'image' },
+    { id:'d6',  name:'TV Wall Panel with Floating Console', category:catLR, mediaUrl:'Image/IMG-20260612-WA0054.jpg', mediaType:'image' },
+    { id:'d7',  name:'TV Wall Unit with Glass Shelves',  category:catLR, mediaUrl:'Image/IMG-20260612-WA0055.jpg',  mediaType:'image' },
+    { id:'d8',  name:'Floating Console with Wood Slats', category:catLR, mediaUrl:'Image/IMG-20260612-WA0056.jpg',  mediaType:'image' },
+    { id:'d9',  name:'White Minimalist TV Console',       category:catLR, mediaUrl:'Image/IMG-20260612-WA0057.jpg',  mediaType:'image' },
+    { id:'d10', name:'TV Wall Panel with LED Backlight', category:catLR, mediaUrl:'Image/IMG-20260612-WA0058.jpg',  mediaType:'image' },
+    { id:'d11', name:'TV Wall with Wood Slats',          category:catLR, mediaUrl:'Image/IMG-20260612-WA0059.jpg',  mediaType:'image' },
+    { id:'d12', name:'Luxury TV Wall with Illuminated Display', category:catLR, mediaUrl:'Image/IMG-20260612-WA0060.jpg', mediaType:'image' },
+    { id:'d13', name:'Black and White TV Wall Unit',     category:catLR, mediaUrl:'Image/IMG-20260612-WA0061.jpg',  mediaType:'image' },
+    { id:'d14', name:'Marble Panel TV Wall with LED Strip', category:catLR, mediaUrl:'Image/IMG-20260612-WA0062.jpg', mediaType:'image' },
+    { id:'d15', name:'Marble TV Wall with Floating Console', category:catLR, mediaUrl:'Image/IMG-20260612-WA0063.jpg', mediaType:'image' },
+    { id:'d16', name:'Complete Marble TV Wall Unit',     category:catLR, mediaUrl:'Image/IMG-20260612-WA0064.jpg',  mediaType:'image' },
+    { id:'d17', name:'Finished Marble TV Wall Unit',     category:catLR, mediaUrl:'Image/IMG-20260612-WA0065.jpg',  mediaType:'image' },
+    { id:'d18', name:'Marble TV Wall with Wood Accents', category:catLR, mediaUrl:'Image/IMG-20260612-WA0066.jpg',  mediaType:'image' },
+    { id:'d19', name:'Marble TV Wall Final Installation',category:catLR, mediaUrl:'Image/IMG-20260612-WA0067.jpg',  mediaType:'image' },
+    { id:'d20', name:'Flip-Top Shoe Cabinet',            category:catLR, mediaUrl:'Image/IMG-20260612-WA0068.jpg',  mediaType:'image' },
+    { id:'d21', name:'Shoe Storage Bench with Cushion',  category:catLR, mediaUrl:'Image/IMG-20260612-WA0069.jpg',  mediaType:'image' },
+    { id:'d22', name:'Sculptural Wood Mirror Frame',     category:catAcc, mediaUrl:'Image/IMG-20260612-WA0070.jpg',  mediaType:'image' },
+    { id:'d23', name:'Louvered Door Shoe Cabinet',       category:catLR, mediaUrl:'Image/IMG-20260612-WA0071.jpg',  mediaType:'image' },
+    { id:'d24', name:'Shoe Rack with Mirror',            category:catLR, mediaUrl:'Image/IMG-20260612-WA0072.jpg',  mediaType:'image' },
+    { id:'d25', name:'Wooden Shoe Rack with Drawer',     category:catLR, mediaUrl:'Image/IMG-20260612-WA0073.jpg',  mediaType:'image' },
+    { id:'d26', name:'Rotating Shoe Rack Tower',         category:catLR, mediaUrl:'Image/IMG-20260612-WA0074.jpg',  mediaType:'image' },
+    { id:'d27', name:'Curved Shelf Shoe Rack',           category:catLR, mediaUrl:'Image/IMG-20260612-WA0075.jpg',  mediaType:'image' },
+    { id:'d28', name:'Wooden Shoe Rack Multi-Shelf',     category:catLR, mediaUrl:'Image/IMG-20260612-WA0076.jpg',  mediaType:'image' },
+    { id:'d29', name:'Glass Door Display Cabinet',       category:catOF, mediaUrl:'Image/IMG-20260612-WA0077.jpg',  mediaType:'image' },
+    { id:'d30', name:'Black Metal Bookcase',             category:catOF, mediaUrl:'Image/IMG-20260612-WA0078.jpg',  mediaType:'image' },
+    { id:'d31', name:'Executive Office Desk Set',        category:catOF, mediaUrl:'Image/IMG-20260612-WA0079.jpg',  mediaType:'image' },
+    { id:'d32', name:'LED Reception Desk',               category:catOF, mediaUrl:'Image/IMG-20260612-WA0080.jpg',  mediaType:'image' },
+    { id:'d33', name:'Wood Slatted Bar Counter',         category:catDR, mediaUrl:'Image/IMG-20260612-WA0081.jpg',  mediaType:'image' },
+    { id:'d34', name:'Modern L-Shaped Office Desk',      category:catOF, mediaUrl:'Image/IMG-20260612-WA0082.jpg',  mediaType:'image' },
+    { id:'d35', name:'Executive L-Shaped Desk',          category:catOF, mediaUrl:'Image/IMG-20260612-WA0083.jpg',  mediaType:'image' },
+    { id:'d36', name:'Modern Office Desk with Cabinet',  category:catOF, mediaUrl:'Image/IMG-20260612-WA0084.jpg',  mediaType:'image' },
+    { id:'d37', name:'Sculptural Floor Mirror',          category:catAcc, mediaUrl:'Image/IMG-20260612-WA0085.jpg',  mediaType:'image' },
+    { id:'d38', name:'Organic Wood Floor Mirror',        category:catAcc, mediaUrl:'Image/IMG-20260612-WA0086.jpg',  mediaType:'image' },
+    { id:'d39', name:'White Vanity Table with Stool',    category:catBD, mediaUrl:'Image/IMG-20260612-WA0087.jpg',  mediaType:'image' },
+    { id:'d40', name:'Oval Wood Dowel Mirror',           category:catAcc, mediaUrl:'Image/IMG-20260612-WA0088.jpg',  mediaType:'image' },
+    { id:'d41', name:'LED Hollywood Vanity Table',       category:catBD, mediaUrl:'Image/IMG-20260612-WA0089.jpg',  mediaType:'image' },
+    { id:'d42', name:'Ocean Wave Epoxy Dining Table',    category:catDR, mediaUrl:'Image/IMG-20260612-WA0090.jpg',  mediaType:'image' },
+    { id:'d43', name:'Round Epoxy Resin Side Table',     category:catAcc, mediaUrl:'Image/IMG-20260612-WA0091.jpg',  mediaType:'image' },
+    { id:'d44', name:'Kitchen Cabinet with Stovetop',    category:catKF, mediaUrl:'Image/IMG-20260612-WA0092.jpg',  mediaType:'image' },
+    { id:'d45', name:'Luxury TV Wall with Marble Panel', category:catLR, mediaUrl:'Image/IMG-20260612-WA0093.jpg',  mediaType:'image' },
+    { id:'d46', name:'Custom Office Desks Batch',        category:catOF, mediaUrl:'Image/IMG-20260612-WA0094.jpg',  mediaType:'image' },
+    { id:'d47', name:'White Vanity Dressing Table',      category:catBD, mediaUrl:'Image/IMG-20260612-WA0095.jpg',  mediaType:'image' },
+    { id:'d48', name:'Black Bar Counter',                category:catDR, mediaUrl:'Image/IMG-20260612-WA0096.jpg',  mediaType:'image' },
+    { id:'d49', name:'Yellow Velvet Chaise Lounge',     category:catLR, mediaUrl:'Image/IMG-20260612-WA0097.jpg',  mediaType:'image' },
+    { id:'d50', name:'Blue Epoxy Resin Round Table',    category:catDR, mediaUrl:'Image/IMG-20260612-WA0098.jpg',  mediaType:'image' },
+    { id:'d51', name:'Floral Epoxy Dining Table',        category:catDR, mediaUrl:'Image/IMG-20260612-WA0099.jpg',  mediaType:'image' },
+    { id:'d52', name:'Marble Oval Dining Set',           category:catDR, mediaUrl:'Image/IMG-20260612-WA0100.jpg',  mediaType:'image' },
+    { id:'d53', name:'Kitchen Stovetop Cabinet',         category:catKF, mediaUrl:'Image/IMG-20260612-WA0101.jpg',  mediaType:'image' },
+    { id:'d54', name:'Green Velvet Chesterfield Sofa',   category:catLR, mediaUrl:'Image/IMG-20260612-WA0102.jpg',  mediaType:'image' },
+    { id:'d55', name:'Gray Wood TV Console',             category:catLR, mediaUrl:'Image/IMG-20260612-WA0103.jpg',  mediaType:'image' },
+    { id:'d56', name:'Marble Dining Table with Gold Legs',category:catDR, mediaUrl:'Image/IMG-20260612-WA0104.jpg',  mediaType:'image' },
+    { id:'d57', name:'Kitchen Dining Set',               category:catDR, mediaUrl:'Image/IMG-20260612-WA0105.jpg',  mediaType:'image' },
+    { id:'d58', name:'Wooden Dining Table with Navy Chairs', category:catDR, mediaUrl:'Image/IMG-20260612-WA0106.jpg', mediaType:'image' },
+    { id:'d59', name:'Tufted Velvet L-Shape Sectional',  category:catLR, mediaUrl:'Image/IMG-20260612-WA0107.jpg',  mediaType:'image' },
+    { id:'d60', name:'Marble Dining Table with Black Chairs', category:catDR, mediaUrl:'Image/IMG-20260612-WA0108.jpg', mediaType:'image' },
+    { id:'d61', name:'Tufted Nailhead Dining Chairs',    category:catDR, mediaUrl:'Image/IMG-20260612-WA0109.jpg',  mediaType:'image' },
+    { id:'d62', name:'Executive Office Desk',            category:catOF, mediaUrl:'Image/IMG-20260612-WA0110.jpg',  mediaType:'image' },
+    { id:'d63', name:'Wood Dining Table with Tufted Chairs', category:catDR, mediaUrl:'Image/IMG-20260612-WA0111.jpg', mediaType:'image' },
+    { id:'d64', name:'Marble Dining Table with Bench',   category:catDR, mediaUrl:'Image/IMG-20260612-WA0112.jpg',  mediaType:'image' },
+    { id:'d65', name:'Furniture Showcase Video',         category:catInt, mediaUrl:'Image/VID-20260612-WA0014.mp4', mediaType:'video' },
+    { id:'d66', name:'Interior Design Walkthrough',      category:catInt, mediaUrl:'Image/VID-20260612-WA0024.mp4', mediaType:'video' },
   ];
   products = demo;
   renderProducts();
@@ -655,9 +670,10 @@ function mediaHtml(product, className) {
 }
 
 function renderFilterBar() {
-  const cats = ['All', ...new Set(products.map(p => p.category).filter(Boolean))];
-  document.getElementById('filterBar').innerHTML = cats.map(cat =>
-    `<button class="chip ${cat === activeCategory ? 'active' : ''}" onclick="activeCategory='${escapeJs(cat)}';renderProducts();document.getElementById('productGrid').scrollIntoView({behavior:'smooth',block:'start'})">${escapeHtml(cat)}</button>`
+  const active = activeCategory;
+  const allCats = ['All','Living Room Furniture','Bedroom Furniture','Dining Room Furniture','Office Furniture','Kitchen Furniture','Outdoor Furniture','Custom Furniture','Interior Design Services','Popular Products','Accessories'];
+  document.getElementById('filterBar').innerHTML = allCats.map(cat =>
+    `<button class="chip ${cat === active ? 'active' : ''}" onclick="activeCategory='${escapeJs(cat)}';renderProducts();document.getElementById('productGrid').scrollIntoView({behavior:'smooth',block:'start'})">${escapeHtml(cat)}</button>`
   ).join('');
 }
 
@@ -674,7 +690,7 @@ function renderProducts() {
   renderFilterBar();
   const q = searchTerm.trim().toLowerCase();
   let list = products;
-  if (activeCategory !== 'All') list = list.filter(p => p.category === activeCategory);
+  if (activeCategory !== 'All' && activeCategory !== 'Popular Products') list = list.filter(p => p.category === activeCategory);
   if (q) list = list.filter(p => `${p.name} ${p.category}`.toLowerCase().includes(q));
   document.getElementById('productCount').textContent = `${list.length} item${list.length === 1 ? '' : 's'}`;
   document.getElementById('productGrid').innerHTML = list.length
@@ -687,7 +703,7 @@ function renderProducts() {
             <button class="inquire-btn" onclick="event.stopPropagation();contactWhatsapp('${p.id}')"><i class="fab fa-whatsapp"></i> Inquire via WhatsApp</button>
           </div>
         </article>`).join('')
-    : `<div class="empty-state"><h3>No products found</h3><p>Try a different search or category.</p></div>`;
+    : `<div class="empty-state"><h3>No products in this category yet</h3><p style="margin-bottom:16px;">We're expanding our catalog. Inquire via WhatsApp to check availability or request a custom quote.</p><a href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello Vitastyle, I\'m looking for products in the ' + activeCategory + ' category.')}" target="_blank" class="inquire-btn" style="width:auto;display:inline-flex;padding:12px 28px;text-decoration:none;"><i class="fab fa-whatsapp"></i> Ask on WhatsApp</a></div>`;
 }
 
 function openProduct(id) {
