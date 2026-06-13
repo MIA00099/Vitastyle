@@ -374,9 +374,17 @@
       <span class="text-xs font-display font-medium tracking-[0.2em] uppercase text-vsmid">Collections</span>
       <div class="flex-1 h-px bg-vsdark/10"></div>
     </div>
-    <h2 class="font-display font-bold text-4xl md:text-5xl text-vsdark mb-14">
+    <h2 class="font-display font-bold text-4xl md:text-5xl text-vsdark mb-10">
       Simple & soft collections
     </h2>
+
+    <!-- Search bar -->
+    <div class="relative mb-8 max-w-md">
+      <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-vsmid/60 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <input type="text" id="search-input" placeholder="Search products..." autocomplete="off"
+             class="w-full pl-12 pr-4 py-3 rounded-full border border-vsdark/15 bg-white/70 text-vsdark placeholder:text-vsmid/50 text-sm font-medium focus:border-vscaramel focus:ring-2 focus:ring-vscaramel/30 transition-all outline-none"
+             oninput="handleSearch(this.value)">
+    </div>
 
     <!-- Product grid — populated by JS -->
     <div id="product-catalog">
@@ -668,6 +676,7 @@ create policy "Auth write"
   let supabaseClient = null;
   let allProducts    = [];
   let activeCategory = 'all';
+  let searchTerm     = '';
   let deleteTargetId = null;
   let logoTaps       = 0;
   let logoTapTimer   = null;
@@ -796,9 +805,14 @@ create policy "Auth write"
 
   // ─── RENDER CATALOG ──────────────────────────────────────────────────────
   function renderCatalog(products) {
-    const filtered = activeCategory === 'all'
-      ? products
-      : products.filter(p => p.category === activeCategory);
+    const term = searchTerm.trim().toLowerCase();
+    const filtered = products.filter(p => {
+      const catMatch = activeCategory === 'all' || p.category === activeCategory;
+      const searchMatch = !term || p.name.toLowerCase().includes(term) ||
+                          (p.material && p.material.toLowerCase().includes(term)) ||
+                          (p.category && p.category.toLowerCase().includes(term));
+      return catMatch && searchMatch;
+    });
 
     // Build category nav
     buildCategoryNav(products);
@@ -922,6 +936,16 @@ create policy "Auth write"
     renderCatalog(allProducts);
     // Scroll to catalog
     document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ─── SEARCH ──────────────────────────────────────────────────────────────
+  let searchTimer = null;
+  function handleSearch(val) {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      searchTerm = val;
+      renderCatalog(allProducts);
+    }, 250);
   }
 
   // ─── ADMIN UNLOCK (5-tap logo) ───────────────────────────────────────────
