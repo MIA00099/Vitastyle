@@ -141,6 +141,16 @@ input,select,textarea{-webkit-tap-highlight-color:transparent;}
 .prod-cat{font-size:9px;text-transform:uppercase;letter-spacing:.22em;color:var(--stone-400);margin-bottom:6px;font-weight:500;}
 .prod-name{font-family:var(--serif);font-size:21px;font-weight:500;color:var(--dark);margin-bottom:12px;line-height:1.2;flex:1;}
 .inquire-btn{width:100%;background:var(--dark);color:var(--white);border:none;padding:12px;border-radius:var(--radius);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;transition:background .2s,transform .15s;margin-top:auto;display:flex;align-items:center;justify-content:center;gap:6px;}
+.prod-actions{display:flex;align-items:stretch;gap:8px;margin-top:auto;}
+.prod-actions .inquire-btn{margin-top:0;flex:1;}
+.comment-mini-btn{width:44px;min-width:44px;border:1px solid var(--stone-100);background:var(--gold-pale);color:var(--dark);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:background .2s,border-color .2s,transform .15s;}
+.comment-mini-btn:hover{background:var(--gold-dim);border-color:var(--gold);}
+.comment-mini-btn:active{transform:scale(.98);}
+.prod-comment-preview{margin:0 0 12px;border:1px solid var(--stone-100);background:var(--gold-pale);color:var(--dark);border-radius:var(--radius);padding:10px 11px;text-align:left;cursor:pointer;transition:background .2s,border-color .2s,transform .15s;}
+.prod-comment-preview:hover{background:var(--gold-dim);border-color:var(--gold);}
+.prod-comment-preview:active{transform:scale(.99);}
+.prod-comment-preview span{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;color:var(--stone-600);}
+.prod-comment-preview em{display:block;font-style:normal;font-size:12px;line-height:1.45;color:var(--stone-600);}
 .inquire-btn:hover{background:var(--stone-800);}
 .inquire-btn:active{transform:scale(.98);}
 .empty-state{text-align:center;padding:80px 24px;color:var(--stone-400);grid-column:1/-1;}
@@ -156,6 +166,38 @@ input,select,textarea{-webkit-tap-highlight-color:transparent;}
 .detail-name{font-family:var(--serif);font-size:44px;font-weight:400;line-height:1.03;margin-bottom:18px;}
 .detail-inquire-btn{width:100%;background:var(--dark);color:var(--white);border:none;padding:17px;border-radius:var(--radius-lg);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;cursor:pointer;margin-bottom:14px;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
 .detail-inquire-btn:hover{background:var(--stone-800);}
+.detail-comment{background:var(--white);border:1px solid var(--stone-50);border-radius:var(--radius-lg);padding:18px;margin:22px 0 16px;box-shadow:var(--shadow-sm);}
+.detail-comment label{display:flex;align-items:center;gap:8px;font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--stone-400);font-weight:700;margin-bottom:10px;}
+.detail-comment textarea{width:100%;min-height:110px;resize:vertical;border:1px solid var(--stone-100);border-radius:var(--radius-lg);background:var(--cream);padding:14px 16px;font-size:14px;color:var(--dark);outline:none;transition:border-color .2s,box-shadow .2s,background .2s;}
+.detail-comment textarea:focus{border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(197,139,102,.1);}
+.detail-comment input{width:100%;margin-bottom:10px;border:1px solid var(--stone-100);border-radius:var(--radius-lg);background:var(--cream);padding:12px 16px;font-size:14px;color:var(--dark);outline:none;transition:border-color .2s,box-shadow .2s,background .2s;}
+.detail-comment input:focus{border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(197,139,102,.1);}
+.detail-comment-actions{display:flex;justify-content:flex-end;margin-top:10px;}
+.comment-save-btn{border:1px solid var(--gold);background:var(--gold-pale);color:var(--dark);border-radius:999px;padding:10px 14px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:background .2s,transform .15s;}
+.comment-save-btn:hover{background:var(--gold-dim);}
+.comment-save-btn:active{transform:scale(.98);}
+.detail-comment small{display:block;margin-top:8px;color:var(--stone-400);font-size:11px;line-height:1.5;}
+.public-comments{background:var(--white);border:1px solid var(--stone-50);border-radius:var(--radius-lg);padding:18px;margin:0 0 18px;box-shadow:var(--shadow-sm);}
+.comments-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--stone-50);}
+.comments-head h3{font-family:var(--serif);font-size:24px;font-weight:500;color:var(--dark);}
+.comments-count{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--stone-400);white-space:nowrap;}
+.comments-list{display:flex;flex-direction:column;gap:10px;}
+.public-comment{background:var(--cream);border:1px solid var(--stone-50);border-radius:var(--radius);padding:12px 14px;}
+.public-comment-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px;}
+.public-comment strong{font-size:12px;color:var(--dark);}
+.public-comment time{font-size:10px;color:var(--stone-400);white-space:nowrap;}
+.public-comment p{font-size:13px;line-height:1.55;color:var(--stone-600);}
+.comment-empty{font-size:13px;color:var(--stone-400);line-height:1.5;padding:10px 0;}
+.admin-comment-list{display:flex;flex-direction:column;gap:12px;padding:16px;}
+.admin-comment-item{display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:start;padding:14px;border:1px solid var(--stone-50);border-radius:var(--radius-lg);background:var(--cream);}
+.admin-comment-thumb{width:72px;height:58px;border-radius:var(--radius);overflow:hidden;background:var(--stone-50);display:flex;align-items:center;justify-content:center;}
+.admin-comment-thumb img,.admin-comment-thumb video{width:100%;height:100%;object-fit:cover;}
+.admin-comment-body h4{font-family:var(--serif);font-size:20px;font-weight:500;margin-bottom:2px;color:var(--dark);}
+.admin-comment-meta{display:flex;flex-wrap:wrap;gap:8px;font-size:11px;color:var(--stone-400);margin-bottom:7px;}
+.admin-comment-body p{font-size:13px;line-height:1.55;color:var(--stone-600);}
+.admin-comment-actions{display:flex;flex-direction:column;gap:6px;min-width:104px;}
+.admin-comment-empty{padding:36px 18px;text-align:center;color:var(--stone-400);font-size:14px;}
+@media(max-width:768px){.admin-comment-item{grid-template-columns:56px 1fr;}.admin-comment-thumb{width:56px;height:48px;}.admin-comment-actions{grid-column:1/-1;flex-direction:row;}.admin-comment-actions .tbl-btn{flex:1;}}
 
 /* ── FORMS ── */
 .card-block{background:var(--white);border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:18px;border:1px solid var(--stone-50);}
@@ -263,6 +305,10 @@ tbody tr:hover td{background:#fdfaf7;}
 .footer-item{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:13px;color:rgba(255,255,255,.5);transition:color .2s;}
 .footer-item:hover{color:var(--white);}
 .footer-item i{width:16px;color:var(--gold);font-size:12px;}
+.social-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
+.social-link{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:9px 12px;border:1px solid rgba(197,139,102,.35);border-radius:999px;color:rgba(255,255,255,.78);font-size:12px;font-weight:700;transition:background .2s,color .2s,border-color .2s;}
+.social-link:hover{background:rgba(197,139,102,.14);color:var(--white);border-color:var(--gold);}
+.social-link i{color:var(--gold-light);}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.06);margin-top:32px;padding-top:20px;text-align:center;font-size:11px;color:rgba(255,255,255,.3);}
 @media(max-width:768px){
   .footer-inner{grid-template-columns:1fr;gap:24px;text-align:center;}
@@ -733,6 +779,16 @@ textarea {
     letter-spacing: .04em;
   }
 
+  .prod-actions {
+    gap: 6px;
+  }
+
+  .comment-mini-btn {
+    width: 38px;
+    min-width: 38px;
+    font-size: 14px;
+  }
+
   .modal-btn-row {
     flex-direction: column;
   }
@@ -942,6 +998,10 @@ textarea {
   <div class="mobile-menu-foot">
     <span>Premium furniture · Kigali, Gisozi</span>
     <strong>+250 788 421 306</strong>
+    <div class="social-links" aria-label="Social media">
+      <a href="https://www.instagram.com/Vitastyle_Furniture/" target="_blank" rel="noopener" class="social-link" data-social="instagram"><i class="fab fa-instagram"></i> @Vitastyle_Furniture</a>
+      <a href="https://www.tiktok.com/@Vitastyle_Furniture" target="_blank" rel="noopener" class="social-link" data-social="tiktok"><i class="fab fa-tiktok"></i> @Vitastyle_Furniture</a>
+    </div>
   </div>
 </div>
 
@@ -1073,7 +1133,8 @@ textarea {
   <aside class="admin-sidebar">
     <div class="sidebar-section">
       <div class="sidebar-title">Admin</div>
-      <div class="sidebar-link active" onclick="showAdminPage('products')"><i class="fas fa-box"></i> Products</div>
+      <div class="sidebar-link active" data-admin-page="products" onclick="showAdminPage('products')"><i class="fas fa-box"></i> Products</div>
+      <div class="sidebar-link" data-admin-page="comments" onclick="showAdminPage('comments')"><i class="fas fa-comments"></i> Comments</div>
     </div>
   </aside>
   <main class="admin-body">
@@ -1124,7 +1185,23 @@ textarea {
         </div>
       </div>
     </section>
-  </main>
+    <section id="admin-comments" class="admin-page">
+      <div class="admin-page-header">
+        <h2>Comments</h2>
+        <button class="action-pill" onclick="loadAllProductComments(true)"><i class="fas fa-rotate"></i> Refresh</button>
+      </div>
+      <div id="comments-supabase-notice" class="card-block hide" style="text-align:center;padding:26px;color:var(--stone-400);">
+        <i class="fas fa-database" style="font-size:28px;display:block;margin-bottom:10px;"></i>
+        <p style="font-size:14px;">Supabase is not connected yet. Comments are visible on this browser only until <code style="background:var(--stone-50);padding:2px 8px;border-radius:4px;">SUPABASE_URL</code> and <code style="background:var(--stone-50);padding:2px 8px;border-radius:4px;">SUPABASE_ANON_KEY</code> are added.</p>
+      </div>
+      <div class="table-card">
+        <div class="table-card-head">
+          <h3>Product Comments</h3>
+          <span id="adminCommentCount" class="comments-count">0 comments</span>
+        </div>
+        <div id="adminCommentList" class="admin-comment-list"></div>
+      </div>
+    </section>  </main>
 </div>
 
 <!-- FOOTER -->
@@ -1137,6 +1214,8 @@ textarea {
     <div>
       <div class="footer-heading">Contact</div>
       <a href="https://wa.me/250788421306" target="_blank" class="footer-item"><i class="fab fa-whatsapp"></i> +250 788 421 306</a>
+      <a href="https://www.instagram.com/Vitastyle_Furniture/" target="_blank" rel="noopener" class="footer-item" data-social="instagram"><i class="fab fa-instagram"></i> @Vitastyle_Furniture</a>
+      <a href="https://www.tiktok.com/@Vitastyle_Furniture" target="_blank" rel="noopener" class="footer-item" data-social="tiktok"><i class="fab fa-tiktok"></i> @Vitastyle_Furniture</a>
       <a href="mailto:sergekwizera28@gmail.com" class="footer-item"><i class="fas fa-envelope"></i> sergekwizera28@gmail.com</a>
       <div class="footer-item"><i class="fas fa-map-marker-alt"></i> Kigali, Gisozi</div>
     </div>
@@ -1164,9 +1243,12 @@ textarea {
 ══════════════════════════════════════ */
 const IMGBB_API_KEY   = "b1648e5be66e5b1eef1dccca1f28a331";
 const WHATSAPP_NUMBER = "250788421306";
+const INSTAGRAM_URL  = "https://www.instagram.com/Vitastyle_Furniture/";
+const TIKTOK_URL     = "https://www.tiktok.com/@Vitastyle_Furniture";
+const COMMENTS_STORAGE_KEY = "vitastyle_product_comments_v1";
 const ADMIN_PASSWORD  = "2026";
-const SUPABASE_URL    = "";
-const SUPABASE_ANON_KEY = "";
+const SUPABASE_URL    = "https://cqjuirswcehwazmpyimm.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNxanVpcnN3Y2Vod2F6bXB5aW1tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5NDM0MzcsImV4cCI6MjA5NzUxOTQzN30.2sSVHJZnPxO-GUYu1p59i4xEuvA6Q1h_JvoeE4SOczM";
 
 /* ══════════════════════════════════════
    STATE
@@ -1175,6 +1257,7 @@ let products       = [];
 let activeCategory = "All";
 let searchTerm     = '';
 let itemToDeleteId = null;
+let productComments = {};
 
 /* ══════════════════════════════════════
    SUPABASE
@@ -1351,7 +1434,7 @@ function showView(view, navTarget = 'home') {
   document.getElementById('view-detail').classList.toggle('hide', view !== 'detail');
   document.getElementById('view-admin').classList.toggle('hide', view !== 'admin');
   if (view === 'shop') renderProducts();
-  if (view === 'admin') renderAdminProducts();
+  if (view === 'admin') { renderAdminProducts(); renderAdminComments(); }
   setActiveNav(navTarget);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1415,6 +1498,21 @@ function handleSearch(val) {
   }, 250);
 }
 
+function truncateText(text, maxLength = 86) {
+  const clean = String(text || '').replace(/\s+/g, ' ').trim();
+  return clean.length > maxLength ? clean.slice(0, maxLength - 1).trim() + '...' : clean;
+}
+
+function productCommentSummaryHtml(productId) {
+  const comments = getProductComments(productId);
+  if (!comments.length) return '';
+  const latest = comments[0];
+  const countText = `${comments.length} comment${comments.length === 1 ? '' : 's'}`;
+  return `<button class="prod-comment-preview" onclick="event.stopPropagation();openProduct('${escapeJs(productId)}')" aria-label="View product comments">
+    <span><i class="far fa-comment-dots"></i> ${countText}</span>
+    <em>${escapeHtml(truncateText(latest.text || latest.comment || ''))}</em>
+  </button>`;
+}
 function renderProducts() {
   renderFilterBar();
   const q = searchTerm.trim().toLowerCase();
@@ -1448,34 +1546,287 @@ function renderProducts() {
           <div class="prod-body">
             <div class="prod-cat">${escapeHtml(p.category)}</div>
             <h3 class="prod-name">${escapeHtml(p.name)}</h3>
-            <button class="inquire-btn" onclick="event.stopPropagation();contactWhatsapp('${p.id}')"><i class="fab fa-whatsapp"></i> Inquire via WhatsApp</button>
+            ${productCommentSummaryHtml(p.id)}
+            <div class="prod-actions">
+              <button class="comment-mini-btn" title="Comment on this product" aria-label="Comment on this product" onclick="event.stopPropagation();openProduct('${p.id}')"><i class="far fa-comment-dots"></i></button>
+              <button class="inquire-btn" onclick="event.stopPropagation();contactWhatsapp('${p.id}')"><i class="fab fa-whatsapp"></i> Inquire via WhatsApp</button>
+            </div>
           </div>
         </article>`).join('')
     : `<div class="empty-state"><h3>No products in this category yet</h3><p style="margin-bottom:16px;">We're expanding our catalog. Inquire via WhatsApp to check availability or request a custom quote.</p><a href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello Vitastyle, I\'m looking for products in the ' + activeCategory + ' category.')}" target="_blank" class="inquire-btn" style="width:auto;display:inline-flex;padding:12px 28px;text-decoration:none;"><i class="fab fa-whatsapp"></i> Ask on WhatsApp</a></div>`;
 }
 
+function productDomId(productId) {
+  return String(productId || '').replace(/[^a-zA-Z0-9_-]/g, '-');
+}
+
+function loadLocalComments() {
+  try { productComments = JSON.parse(localStorage.getItem(COMMENTS_STORAGE_KEY) || '{}') || {}; }
+  catch(e) { productComments = {}; }
+}
+
+function saveLocalComments() {
+  try { localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(productComments)); }
+  catch(e) { console.warn('Could not save comments locally:', e); }
+}
+
+function getProductComments(productId) {
+  const key = String(productId);
+  return Array.isArray(productComments[key]) ? productComments[key] : [];
+}
+
+function setProductComments(productId, comments) {
+  const key = String(productId);
+  productComments[key] = (comments || []).map(c => ({ ...c, productId:key }));
+  saveLocalComments();
+}
+
+function mapCommentRow(row) {
+  return {
+    id: row.id || `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    productId: String(row.product_id || row.productId || ''),
+    name: row.customer_name || row.name || 'Client',
+    text: row.comment || row.text || '',
+    createdAt: row.created_at || row.createdAt || new Date().toISOString()
+  };
+}
+
+function groupCommentRows(rows) {
+  const grouped = {};
+  (rows || []).forEach(row => {
+    const comment = mapCommentRow(row);
+    const key = comment.productId || String(row.product_id || row.productId || '');
+    if (!key) return;
+    if (!grouped[key]) grouped[key] = [];
+    grouped[key].push(comment);
+  });
+  Object.keys(grouped).forEach(key => {
+    grouped[key].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  });
+  return grouped;
+}
+
+function getAllComments() {
+  return Object.entries(productComments)
+    .flatMap(([productId, comments]) => (comments || []).map(c => ({ ...c, productId })))
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
+function formatCommentDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+  return date.toLocaleDateString(undefined, { month:'short', day:'numeric', year:'numeric' });
+}
+
+function renderProductComments(productId, loading = false) {
+  const domId = productDomId(productId);
+  const listEl = document.getElementById(`commentsList-${domId}`);
+  const countEl = document.getElementById(`commentsCount-${domId}`);
+  if (!listEl) return;
+  const comments = getProductComments(productId);
+  if (countEl) countEl.textContent = `${comments.length} comment${comments.length === 1 ? '' : 's'}`;
+  if (loading && !comments.length) {
+    listEl.innerHTML = '<div class="comment-empty">Loading comments...</div>';
+    return;
+  }
+  listEl.innerHTML = comments.length
+    ? comments.map(c => `
+        <article class="public-comment">
+          <div class="public-comment-meta">
+            <strong>${escapeHtml(c.name || 'Client')}</strong>
+            <time>${escapeHtml(formatCommentDate(c.createdAt))}</time>
+          </div>
+          <p>${escapeHtml(c.text)}</p>
+        </article>`).join('')
+    : '<div class="comment-empty">No public comments yet. Be the first to comment on this product.</div>';
+}
+
+async function loadAllProductComments(showMessage = false) {
+  if (hasSupabase && supabaseClient) {
+    try {
+      const { data, error } = await supabaseClient
+        .from('product_comments')
+        .select('id, product_id, customer_name, comment, created_at')
+        .order('created_at', { ascending:false })
+        .limit(500);
+      if (error) throw error;
+      productComments = groupCommentRows(data || []);
+      saveLocalComments();
+      if (showMessage) showToast('Comments refreshed');
+    } catch(e) {
+      console.warn('Could not load shared comments:', e);
+      if (showMessage) showToast('Could not refresh shared comments');
+    }
+  } else if (showMessage) {
+    loadLocalComments();
+    showToast('Showing local comments');
+  }
+  renderProducts();
+  renderAdminComments();
+}
+
+async function loadProductComments(productId) {
+  renderProductComments(productId, true);
+  if (hasSupabase && supabaseClient) {
+    try {
+      const { data, error } = await supabaseClient
+        .from('product_comments')
+        .select('id, product_id, customer_name, comment, created_at')
+        .eq('product_id', String(productId))
+        .order('created_at', { ascending:false })
+        .limit(50);
+      if (error) throw error;
+      setProductComments(productId, (data || []).map(mapCommentRow));
+    } catch(e) {
+      console.warn('Could not load shared comments:', e);
+    }
+  }
+  renderProductComments(productId);
+  renderProducts();
+  renderAdminComments();
+}
+
+async function saveProductComment(event, productId, nameFieldId, commentFieldId) {
+  if (event) { event.preventDefault(); event.stopPropagation(); }
+  const nameEl = document.getElementById(nameFieldId);
+  const commentEl = document.getElementById(commentFieldId);
+  const name = (nameEl?.value || '').trim() || 'Client';
+  const text = (commentEl?.value || '').trim();
+  if (!text) { showToast('Please write a comment first.'); return; }
+
+  let savedComment = { id:`${Date.now()}-${Math.random().toString(16).slice(2)}`, productId:String(productId), name, text, createdAt:new Date().toISOString() };
+  let shared = false;
+  if (hasSupabase && supabaseClient) {
+    try {
+      const { data, error } = await supabaseClient
+        .from('product_comments')
+        .insert([{ product_id:String(productId), customer_name:name, comment:text }])
+        .select('id, product_id, customer_name, comment, created_at')
+        .single();
+      if (error) throw error;
+      savedComment = mapCommentRow(data || savedComment);
+      shared = true;
+    } catch(e) {
+      console.warn('Could not save shared comment:', e);
+    }
+  }
+
+  const current = getProductComments(productId).filter(c => c.id !== savedComment.id);
+  setProductComments(productId, [savedComment, ...current].slice(0, 50));
+  if (commentEl) commentEl.value = '';
+  renderProductComments(productId);
+  renderProducts();
+  renderAdminComments();
+  showToast(shared ? 'Comment is now public.' : 'Comment is visible on this device.');
+}
+
 function openProduct(id) {
-  const p = products.find(x => x.id === id);
+  const p = products.find(x => String(x.id) === String(id));
   if (!p) return;
+  const domId = productDomId(p.id);
+  const commentId = `productComment-${domId}`;
+  const commentNameId = `commentName-${domId}`;
+  const safeId = escapeJs(p.id);
   document.getElementById('detailContent').innerHTML = `
     <div class="detail-image">${mediaHtml(p, 'prod-img')}</div>
     <div>
       <div class="prod-cat">${escapeHtml(p.category)}</div>
       <h2 class="detail-name">${escapeHtml(p.name)}</h2>
-      <button class="detail-inquire-btn" onclick="contactWhatsapp('${p.id}')"><i class="fab fa-whatsapp"></i> Inquire via WhatsApp</button>
+      <div class="detail-comment">
+        <label for="${commentId}"><i class="far fa-comment-dots"></i> Public comment on this product</label>
+        <input id="${commentNameId}" maxlength="40" placeholder="Your name (optional)">
+        <textarea id="${commentId}" placeholder="Write your question, feedback, preferred color, size, delivery location, or any custom request..."></textarea>
+        <div class="detail-comment-actions">
+          <button class="comment-save-btn" onclick="saveProductComment(event, '${safeId}', '${commentNameId}', '${commentId}')"><i class="far fa-eye"></i> Post Comment</button>
+        </div>
+        <small>Saved comments appear below. With Supabase configured, all visitors can see them.</small>
+      </div>
+      <section class="public-comments" aria-label="Public product comments">
+        <div class="comments-head">
+          <h3>Client comments</h3>
+          <span class="comments-count" id="commentsCount-${domId}">0 comments</span>
+        </div>
+        <div class="comments-list" id="commentsList-${domId}"></div>
+      </section>
+      <button class="detail-inquire-btn" onclick="contactWhatsapp('${safeId}', '${commentId}')"><i class="fab fa-whatsapp"></i> Send Product on WhatsApp</button>
     </div>`;
   showView('detail');
+  loadProductComments(p.id);
 }
 
-function contactWhatsapp(id) {
-  const p = products.find(x => x.id === id);
-  const text = encodeURIComponent(`Hello Vitastyle, I'm interested in the ${p?.name || 'product'}.`);
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+function productMediaUrl(product) {
+  if (!product?.mediaUrl) return '';
+  try { return new URL(product.mediaUrl, window.location.href).href; }
+  catch(e) { return product.mediaUrl; }
+}
+
+function contactWhatsapp(id, commentFieldId) {
+  const p = products.find(x => String(x.id) === String(id));
+  const comment = commentFieldId ? document.getElementById(commentFieldId)?.value.trim() : '';
+  const mediaLink = productMediaUrl(p);
+  const mediaLabel = p?.mediaType === 'video' ? 'Product video' : 'Product image';
+  const lines = [
+    "Hello Vitastyle, I'm interested in this product.",
+    `Product: ${p?.name || 'product'}`,
+    p?.category ? `Category: ${p.category}` : '',
+    mediaLink ? `${mediaLabel}: ${mediaLink}` : '',
+    comment ? `Client comment: ${comment}` : ''
+  ].filter(Boolean);
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
 }
 
 /* ══════════════════════════════════════
    ADMIN PRODUCTS
 ══════════════════════════════════════ */
+function renderAdminComments() {
+  const listEl = document.getElementById('adminCommentList');
+  if (!listEl) return;
+  const comments = getAllComments();
+  const countEl = document.getElementById('adminCommentCount');
+  if (countEl) countEl.textContent = `${comments.length} comment${comments.length === 1 ? '' : 's'}`;
+  document.getElementById('comments-supabase-notice')?.classList.toggle('hide', !!hasSupabase);
+  listEl.innerHTML = comments.length
+    ? comments.map(c => {
+        const product = products.find(p => String(p.id) === String(c.productId));
+        return `
+          <article class="admin-comment-item">
+            <div class="admin-comment-thumb">${product ? mediaHtml(product, 'prod-img') : '<i class="far fa-comment-dots"></i>'}</div>
+            <div class="admin-comment-body">
+              <h4>${escapeHtml(product?.name || 'Unknown product')}</h4>
+              <div class="admin-comment-meta">
+                <span><i class="far fa-user"></i> ${escapeHtml(c.name || 'Client')}</span>
+                <span><i class="far fa-calendar"></i> ${escapeHtml(formatCommentDate(c.createdAt))}</span>
+                ${product?.category ? `<span><i class="fas fa-tag"></i> ${escapeHtml(product.category)}</span>` : ''}
+              </div>
+              <p>${escapeHtml(c.text)}</p>
+            </div>
+            <div class="admin-comment-actions">
+              ${product ? `<button class="tbl-btn" onclick="openProduct('${escapeJs(c.productId)}')">Open Product</button>` : ''}
+              <button class="tbl-btn danger" onclick="deleteProductComment('${escapeJs(c.productId)}','${escapeJs(c.id)}')">Delete</button>
+            </div>
+          </article>`;
+      }).join('')
+    : '<div class="admin-comment-empty">No product comments yet.</div>';
+}
+
+async function deleteProductComment(productId, commentId) {
+  if (!confirm('Delete this comment?')) return;
+  if (hasSupabase && supabaseClient) {
+    try {
+      const { error } = await supabaseClient.from('product_comments').delete().eq('id', commentId);
+      if (error) throw error;
+    } catch(e) {
+      console.warn('Could not delete shared comment:', e);
+      showToast('Could not delete shared comment');
+      return;
+    }
+  }
+  setProductComments(productId, getProductComments(productId).filter(c => String(c.id) !== String(commentId)));
+  renderProductComments(productId);
+  renderProducts();
+  renderAdminComments();
+  showToast('Comment deleted');
+}
 function renderAdminProducts() {
   document.getElementById('adminProductRows').innerHTML = products.map(p => `
     <tr>
@@ -1519,6 +1870,7 @@ async function executeDelete(id) {
   const { error } = await supabaseClient.from('products').delete().eq('id', id);
   if (error) { showToast('Failed to delete product'); return; }
   await fetchProducts();
+  await loadAllProductComments();
   showToast('Product deleted');
 }
 
@@ -1544,6 +1896,7 @@ async function saveProduct(event) {
   if (error) { showToast('Save failed: ' + (error.message || 'error')); return; }
   resetProductForm();
   await fetchProducts();
+  await loadAllProductComments();
   showToast('Product saved ✓');
 }
 
@@ -1616,7 +1969,11 @@ function resetProductForm() {
 
 function showAdminPage(page) {
   document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
-  document.getElementById('admin-' + page).classList.add('active');
+  document.getElementById('admin-' + page)?.classList.add('active');
+  document.querySelectorAll('.sidebar-link').forEach(link => {
+    link.classList.toggle('active', link.dataset.adminPage === page);
+  });
+  if (page === 'comments') renderAdminComments();
 }
 
 
@@ -1668,6 +2025,11 @@ function openWhatsAppGeneral() {
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
 }
 
+function setupSocialLinks() {
+  document.querySelectorAll('[data-social="instagram"]').forEach(link => { link.href = INSTAGRAM_URL; });
+  document.querySelectorAll('[data-social="tiktok"]').forEach(link => { link.href = TIKTOK_URL; });
+}
+
 /* ══════════════════════════════════════
    UTILS
 ══════════════════════════════════════ */
@@ -1678,7 +2040,10 @@ function escapeJs(v) { return String(v||'').replace(/'/g, "\\'"); }
    INIT
 ══════════════════════════════════════ */
 window.addEventListener('load', async () => {
+  loadLocalComments();
+  setupSocialLinks();
   await fetchProducts();
+  await loadAllProductComments();
   setTimeout(() => {
     const loader = document.getElementById('global-loader');
     if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 500); }
@@ -1688,4 +2053,4 @@ window.addEventListener('load', async () => {
 });
 </script>
 </body>
-</html>
+</html>]
