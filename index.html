@@ -1206,18 +1206,18 @@ textarea {
           <input type="hidden" id="mediaUrl">
           <input type="hidden" id="mediaType" value="image">
           <div class="field">
-            <label>Product Image</label>
+            <label>Product Image / Video</label>
             <div class="file-upload-wrapper">
-              <input id="productMediaFile" type="file" accept="image/*" onchange="handleProductMediaUpload(event)">
+              <input id="productMediaFile" type="file" accept="image/*,video/*" onchange="handleProductMediaUpload(event)">
               <img id="mediaPreviewImg" class="file-preview" alt="Preview">
               <video id="mediaPreviewVideo" class="file-preview" muted playsinline controls></video>
               <i class="fas fa-cloud-upload-alt" style="font-size:28px;margin-bottom:8px;"></i>
-              <span id="uploadLabel">Click to upload image</span>
+              <span id="uploadLabel">Click to upload image or video</span>
             </div>
-            <small id="uploadStatus" style="display:block;margin-top:8px;color:var(--stone-400);">ImgBB ready — select an image to upload.</small>
+            <small id="uploadStatus" style="display:block;margin-top:8px;color:var(--stone-400);">Images upload to ImgBB. Videos upload to Cloudinary.</small>
           </div>
           <div class="field">
-            <label>Or Paste Media URL</label>
+            <label>Or Paste Image / Video URL</label>
             <input id="mediaUrlManual" type="url" placeholder="https://... image URL" oninput="useManualMediaUrl()">
           </div>
           <div class="field-row">
@@ -1294,6 +1294,11 @@ textarea {
    CONFIG
 ══════════════════════════════════════ */
 const IMGBB_API_KEY   = "b1648e5be66e5b1eef1dccca1f28a331";
+/* Cloudinary video uploads use an unsigned upload preset.
+   Never put CLOUDINARY_URL, API secret, or signed-upload credentials in public HTML. */
+const CLOUDINARY_CLOUD_NAME = "dhkghqahk";
+const CLOUDINARY_UNSIGNED_UPLOAD_PRESET = "vitastyle_video_uploads";
+const CLOUDINARY_VIDEO_FOLDER = "vitastyle/products/videos";
 const WHATSAPP_NUMBER = "250788421306";
 const INSTAGRAM_URL  = "https://www.instagram.com/Vitastyle_Furniture/";
 const TIKTOK_URL     = "https://www.tiktok.com/@Vitastyle_Furniture";
@@ -1959,46 +1964,77 @@ async function handleProductMediaUpload(event) {
   const file = event.target.files[0];
   if (!file) return;
   const isImage = file.type.startsWith('image/');
-  if (!isImage) { showToast('ImgBB supports images only'); event.target.value = ''; return; }
-  document.getElementById('mediaType').value = 'image';
+  const isVideo = file.type.startsWith('video/');
+  if (!isImage && !isVideo) {
+    showToast('Please choose an image or video file');
+    event.target.value = '';
+    return;
+  }
+  document.getElementById('mediaType').value = isVideo ? 'video' : 'image';
   previewLocalFile(file);
   const status = document.getElementById('uploadStatus');
   const btn = document.getElementById('saveProductBtn');
-  status.textContent = 'Uploading to ImgBB…';
+  status.textContent = isVideo ? 'Uploading video to Cloudinary...' : 'Uploading image to ImgBB...';
   btn.disabled = true;
   try {
-    const url = await uploadToImgBB(file);
+    const url = isVideo ? await uploadVideoToCloudinary(file) : await uploadToImgBB(file);
     document.getElementById('mediaUrl').value = url;
     document.getElementById('mediaUrlManual').value = url;
-    status.textContent = '✓ Uploaded to ImgBB successfully.';
-    showToast('Image uploaded!');
+    status.textContent = isVideo ? 'Uploaded video to Cloudinary successfully.' : 'Uploaded image to ImgBB successfully.';
+    showToast(isVideo ? 'Video uploaded!' : 'Image uploaded!');
   } catch(e) {
-    status.textContent = 'Upload failed — ' + e.message;
+    console.error('Upload failed:', e);
+    status.textContent = 'Upload failed - ' + e.message;
     showToast('Upload failed');
   } finally { btn.disabled = false; }
 }
 
 function previewLocalFile(file) {
   const url = URL.createObjectURL(file);
-  document.getElementById('mediaPreviewImg').src = url;
-  document.getElementById('mediaPreviewImg').style.display = 'block';
-  document.getElementById('mediaPreviewVideo').style.display = 'none';
-  document.getElementById('uploadLabel').textContent = 'Image selected';
+  const img = document.getElementById('mediaPreviewImg');
+  const video = document.getElementById('mediaPreviewVideo');
+  img.style.display = 'none';
+  video.style.display = 'none';
+  if (file.type.startsWith('video/')) {
+    video.src = url;
+    video.style.display = 'block';
+    document.getElementById('uploadLabel').textContent = 'Video selected';
+  } else {
+    img.src = url;
+    img.style.display = 'block';
+    document.getElementById('uploadLabel').textContent = 'Image selected';
+  }
 }
 
 async function uploadToImgBB(file) {
   const fd = new FormData();
   fd.append('image', file);
   const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: fd });
-  const data = await res.json();
+  const data = await res.json().catch(() => ({}));
   if (!res.ok || !data.success) throw new Error(data.error?.message || 'ImgBB upload failed');
   return data.data.url;
+}
+
+async function uploadVideoToCloudinary(file) {
+  if (!CLOUDINARY_CLOUD_NAME) throw new Error('Cloudinary cloud name is missing');
+  if (!CLOUDINARY_UNSIGNED_UPLOAD_PRESET) throw new Error('Cloudinary unsigned upload preset is missing');
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('upload_preset', CLOUDINARY_UNSIGNED_UPLOAD_PRESET);
+  if (CLOUDINARY_VIDEO_FOLDER) fd.append('folder', CLOUDINARY_VIDEO_FOLDER);
+  const endpoint = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/video/upload`;
+  const res = await fetch(endpoint, { method: 'POST', body: fd });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error?.message || 'Cloudinary video upload failed');
+  const url = data.secure_url || data.url;
+  if (!url) throw new Error('Cloudinary did not return a video URL');
+  return url;
 }
 
 function useManualMediaUrl() {
   const url = document.getElementById('mediaUrlManual').value.trim();
   document.getElementById('mediaUrl').value = url;
-  const isVideo = /\.(mp4|webm|mov|m4v)(\?|$)/i.test(url);
+  const isVideo = /\.(mp4|webm|mov|m4v)(\?|$)/i.test(url) || /\/video\/upload\//i.test(url);
   document.getElementById('mediaType').value = isVideo ? 'video' : 'image';
   document.getElementById('mediaPreviewImg').style.display = 'none';
   document.getElementById('mediaPreviewVideo').style.display = 'none';
@@ -2015,8 +2051,8 @@ function resetProductForm() {
   document.getElementById('mediaType').value = 'image';
   document.getElementById('mediaPreviewImg').style.display = 'none';
   document.getElementById('mediaPreviewVideo').style.display = 'none';
-  document.getElementById('uploadLabel').textContent = 'Click to upload image';
-  document.getElementById('uploadStatus').textContent = 'ImgBB ready — select an image to upload.';
+  document.getElementById('uploadLabel').textContent = 'Click to upload image or video';
+  document.getElementById('uploadStatus').textContent = 'Images upload to ImgBB. Videos upload to Cloudinary.';
 }
 
 function showAdminPage(page) {
