@@ -1205,6 +1205,8 @@ textarea {
           <input type="hidden" id="editProductId">
           <input type="hidden" id="mediaUrl">
           <input type="hidden" id="mediaType" value="image">
+          <input type="hidden" id="originalMediaUrl">
+          <input type="hidden" id="originalMediaType" value="image">
           <div class="field">
             <label>Product Image / Video</label>
             <div class="file-upload-wrapper">
@@ -1907,6 +1909,8 @@ function editProduct(id) {
   document.getElementById('mediaUrl').value          = p.mediaUrl || '';
   document.getElementById('mediaUrlManual').value    = p.mediaUrl || '';
   document.getElementById('mediaType').value         = p.mediaType || 'image';
+  document.getElementById('originalMediaUrl').value  = p.mediaUrl || '';
+  document.getElementById('originalMediaType').value = p.mediaType || 'image';
   useManualMediaUrl();
   showToast('Editing product — make changes and save');
 }
@@ -1937,11 +1941,17 @@ async function saveProduct(event) {
   const btn = document.getElementById('saveProductBtn');
   btn.disabled = true; btn.textContent = 'Saving…';
   const editId = document.getElementById('editProductId').value.trim();
+  const mediaUrl = document.getElementById('mediaUrl').value.trim() || document.getElementById('originalMediaUrl').value.trim() || null;
+  const mediaType = mediaUrl
+    ? (document.getElementById('mediaUrl').value.trim()
+        ? document.getElementById('mediaType').value
+        : document.getElementById('originalMediaType').value || 'image')
+    : 'image';
   const item = {
     name:      document.getElementById('productName').value.trim(),
     category:  document.getElementById('productCategory').value.trim(),
-    mediaUrl:  document.getElementById('mediaUrl').value.trim() || null,
-    mediaType: document.getElementById('mediaType').value || 'image',
+    mediaUrl,
+    mediaType,
     emoji: '🛋️'
   };
   if (editId) item.id = editId;
@@ -2033,14 +2043,17 @@ async function uploadVideoToCloudinary(file) {
 
 function useManualMediaUrl() {
   const url = document.getElementById('mediaUrlManual').value.trim();
-  document.getElementById('mediaUrl').value = url;
+  const originalUrl = document.getElementById('originalMediaUrl')?.value.trim() || '';
+  document.getElementById('mediaUrl').value = url || originalUrl;
   const isVideo = /\.(mp4|webm|mov|m4v)(\?|$)/i.test(url) || /\/video\/upload\//i.test(url);
-  document.getElementById('mediaType').value = isVideo ? 'video' : 'image';
+  document.getElementById('mediaType').value = url ? (isVideo ? 'video' : 'image') : (document.getElementById('originalMediaType')?.value || 'image');
   document.getElementById('mediaPreviewImg').style.display = 'none';
   document.getElementById('mediaPreviewVideo').style.display = 'none';
-  if (url) {
-    if (isVideo) { document.getElementById('mediaPreviewVideo').src = url; document.getElementById('mediaPreviewVideo').style.display = 'block'; }
-    else { document.getElementById('mediaPreviewImg').src = url; document.getElementById('mediaPreviewImg').style.display = 'block'; }
+  const previewUrl = url || originalUrl;
+  const previewIsVideo = url ? isVideo : (document.getElementById('originalMediaType')?.value === 'video');
+  if (previewUrl) {
+    if (previewIsVideo) { document.getElementById('mediaPreviewVideo').src = previewUrl; document.getElementById('mediaPreviewVideo').style.display = 'block'; }
+    else { document.getElementById('mediaPreviewImg').src = previewUrl; document.getElementById('mediaPreviewImg').style.display = 'block'; }
   }
 }
 
@@ -2049,6 +2062,8 @@ function resetProductForm() {
   document.getElementById('editProductId').value = '';
   document.getElementById('mediaUrl').value = '';
   document.getElementById('mediaType').value = 'image';
+  document.getElementById('originalMediaUrl').value = '';
+  document.getElementById('originalMediaType').value = 'image';
   document.getElementById('mediaPreviewImg').style.display = 'none';
   document.getElementById('mediaPreviewVideo').style.display = 'none';
   document.getElementById('uploadLabel').textContent = 'Click to upload image or video';
